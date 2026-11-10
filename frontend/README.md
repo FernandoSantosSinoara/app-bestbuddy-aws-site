@@ -143,13 +143,6 @@ frontend/
 ├── css/
 │   ├── src/input.css          # Fonte Tailwind com @apply e classes bb-*
 │   └── tailwind.build.css     # CSS gerado e minificado carregado pelas páginas
-└── .github/workflows/deploy.yml # Pipeline de CI/CD para o GitHub Pages
 ```
 
----
-
-## 🌐 Deploy no GitHub Pages
-
-O projeto publica automaticamente o site estático a cada `push` na branch `main` através do GitHub Actions configurado em `.github/workflows/deploy.yml`.
-
-Como o CSS compilado já é commitado no repositório, o deploy é 100% estático e instantâneo.
+Não há deploy automático do frontend configurado neste projeto. Para executá-lo com o backend e o Nginx localmente, use `docker compose up --build` a partir da raiz do repositório.

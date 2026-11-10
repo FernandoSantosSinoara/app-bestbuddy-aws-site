@@ -51,7 +51,7 @@ flowchart LR
 - **Vanilla JavaScript (ES6+)**: Sem frameworks pesados (React/Vue/Angular), garantindo leveza absoluta e ausência de bundlers obrigatórios no runtime de produção.
 - **Tailwind CSS v3 (CLI)**: Processado localmente ou no CI, com arquivo gerado e minificado (`css/tailwind.build.css`) versionado no repositório.
 - **Armazenamento de Sessão**: `localStorage` gerenciado centralizadamente por `js/utils/storage.js`.
-- **Deploy**: GitHub Pages via GitHub Actions (totalmente estático).
+- **Entrega**: Arquivos estáticos servidos pelo Nginx no Docker Compose; não há deploy automático do frontend configurado.
 
 ### Backend
 - **Python 3.12+ / 3.14**: Linguagem principal.
