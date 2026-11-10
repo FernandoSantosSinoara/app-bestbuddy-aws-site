@@ -1,0 +1,539 @@
+/*
+ * Pop-up de Edição de Anúncio (pages/animals/index.html)
+ * CSS puro para não depender de rebuild do Tailwind.
+ * Reaproveita a base .bb-modal-* do tailwind.build.css e a paleta do projeto.
+ */
+
+.bb-edit-dialog {
+  max-width: 560px !important;
+}
+
+/* ---------- Cabeçalho com foto e identificação do pet ---------- */
+.bb-edit-header {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 1.25rem 3.5rem 1rem 1.5rem;
+  background: linear-gradient(135deg, rgba(47, 138, 224, 0.08) 0%, rgba(255, 255, 255, 0) 70%);
+  border-bottom: 1px solid #edf2f7;
+}
+
+.bb-edit-header__thumb {
+  flex-shrink: 0;
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #eef2f8;
+  border: 2px solid #ffffff;
+  box-shadow: 0 4px 12px rgba(20, 40, 70, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+}
+
+.bb-edit-header__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.bb-edit-header__info {
+  min-width: 0;
+}
+
+.bb-edit-header__eyebrow {
+  margin: 0;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #2f8ae0;
+}
+
+.bb-edit-header__title {
+  margin: 0.1rem 0 0.35rem 0;
+  font-family: Sora, "Segoe UI", system-ui, sans-serif;
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #16233a;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.bb-edit-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.15rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  border: 1px solid transparent;
+}
+
+.bb-edit-chip--adocao {
+  background: rgba(31, 157, 99, 0.1);
+  color: #17804f;
+  border-color: rgba(31, 157, 99, 0.25);
+}
+
+.bb-edit-chip--perdido {
+  background: rgba(245, 158, 11, 0.12);
+  color: #b45309;
+  border-color: rgba(245, 158, 11, 0.3);
+}
+
+/* ---------- Abas (etapas) ---------- */
+.bb-edit-tabs {
+  display: flex;
+  gap: 0.35rem;
+  padding: 0.75rem 1.5rem 0 1.5rem;
+  border-bottom: 1px solid #edf2f7;
+  background: #ffffff;
+}
+
+.bb-edit-tab {
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  padding: 0.6rem 0.5rem 0.75rem 0.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: Inter, "Segoe UI", system-ui, sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #8895a8;
+  transition: color 0.2s ease;
+}
+
+.bb-edit-tab::after {
+  content: "";
+  position: absolute;
+  left: 15%;
+  right: 15%;
+  bottom: -1px;
+  height: 3px;
+  border-radius: 3px 3px 0 0;
+  background: linear-gradient(90deg, #2f8ae0, #1c6dc4);
+  transform: scaleX(0);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.bb-edit-tab:hover {
+  color: #55627a;
+}
+
+.bb-edit-tab.is-active {
+  color: #1c6dc4;
+}
+
+.bb-edit-tab.is-active::after {
+  transform: scaleX(1);
+}
+
+.bb-edit-tab__num {
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.72rem;
+  font-weight: 700;
+  background: #eef2f8;
+  color: #8895a8;
+  transition: all 0.2s ease;
+}
+
+.bb-edit-tab.is-active .bb-edit-tab__num {
+  background: linear-gradient(135deg, #2f8ae0, #1c6dc4);
+  color: #ffffff;
+  box-shadow: 0 3px 8px rgba(47, 138, 224, 0.35);
+}
+
+.bb-edit-tab.has-error .bb-edit-tab__num {
+  background: #d93b52;
+  color: #ffffff;
+}
+
+/* ---------- Painéis ---------- */
+.bb-edit-body {
+  min-height: 300px;
+}
+
+.bb-edit-panel {
+  display: none;
+}
+
+.bb-edit-panel.is-active {
+  display: block;
+  animation: bb-edit-panel-in 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes bb-edit-panel-in {
+  from {
+    opacity: 0;
+    transform: translateX(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.bb-edit-section + .bb-edit-section {
+  margin-top: 1.4rem;
+  padding-top: 1.2rem;
+  border-top: 1px dashed #e2e8f2;
+}
+
+.bb-edit-section__title {
+  margin: 0 0 0.85rem 0;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #55627a;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.bb-edit-field {
+  margin-bottom: 0.9rem;
+}
+
+.bb-edit-field:last-child {
+  margin-bottom: 0;
+}
+
+.bb-edit-field .bb-label {
+  margin-bottom: 0.35rem;
+  font-size: 0.8rem;
+}
+
+.bb-edit-field .bb-input {
+  padding-top: 0.6rem;
+  padding-bottom: 0.6rem;
+  font-size: 0.9rem;
+}
+
+.bb-edit-required {
+  color: #d93b52;
+}
+
+.bb-edit-hint {
+  margin: 0.3rem 0 0 0;
+  font-size: 0.72rem;
+  color: #8895a8;
+  display: flex;
+  justify-content: space-between;
+}
+
+.bb-edit-hint--error {
+  color: #d93b52;
+  font-weight: 600;
+}
+
+/* ---------- Segmented control (Tipo / Sexo) ---------- */
+.bb-edit-segmented {
+  display: flex;
+  gap: 0.4rem;
+  padding: 0.25rem;
+  background: #eef2f8;
+  border: 1px solid #dfe5ef;
+  border-radius: 0.6rem;
+}
+
+.bb-edit-segmented label {
+  flex: 1;
+  position: relative;
+  cursor: pointer;
+}
+
+.bb-edit-segmented input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.bb-edit-segmented span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+  padding: 0.45rem 0.4rem;
+  border-radius: 0.45rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #55627a;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.bb-edit-segmented label:hover span {
+  color: #16233a;
+}
+
+.bb-edit-segmented input:checked + span {
+  background: #ffffff;
+  color: #1c6dc4;
+  box-shadow: 0 2px 6px rgba(20, 40, 70, 0.12);
+}
+
+.bb-edit-segmented input:focus-visible + span {
+  outline: 2px solid #6fb4ee;
+  outline-offset: 1px;
+}
+
+/* ---------- Foto ---------- */
+.bb-edit-photo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.85rem;
+  border: 1px solid #dfe5ef;
+  border-radius: 0.85rem;
+  background: #f8fafc;
+}
+
+.bb-edit-photo__img {
+  flex-shrink: 0;
+  width: 96px;
+  height: 96px;
+  border-radius: 0.7rem;
+  overflow: hidden;
+  background: #eef2f8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  border: 1px solid #cfd8e6;
+}
+
+.bb-edit-photo__img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.bb-edit-photo__info {
+  flex: 1;
+  min-width: 0;
+}
+
+.bb-edit-photo__name {
+  margin: 0;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #16233a;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.bb-edit-photo__meta {
+  margin: 0.15rem 0 0.6rem 0;
+  font-size: 0.72rem;
+  color: #8895a8;
+}
+
+.bb-edit-photo__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.bb-edit-mini-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.4rem 0.75rem;
+  border-radius: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+  border: 1px solid #c9d3e2;
+  background: #ffffff;
+  color: #16233a;
+  transition: all 0.2s ease;
+}
+
+.bb-edit-mini-btn:hover {
+  border-color: #2f8ae0;
+  color: #1c6dc4;
+  transform: translateY(-1px);
+}
+
+.bb-edit-mini-btn--ghost {
+  border-color: transparent;
+  background: transparent;
+  color: #8895a8;
+}
+
+.bb-edit-mini-btn--ghost:hover {
+  border-color: transparent;
+  color: #d93b52;
+}
+
+/* ---------- Status (cartões de opção) ---------- */
+.bb-edit-status-list {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.bb-edit-status {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.7rem 0.85rem;
+  border: 1.5px solid #dfe5ef;
+  border-radius: 0.75rem;
+  cursor: pointer;
+  background: #ffffff;
+  transition: all 0.2s ease;
+}
+
+.bb-edit-status:hover {
+  border-color: #b7dcfb;
+  background: #fbfdff;
+}
+
+.bb-edit-status input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.bb-edit-status__icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: #eef2f8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.bb-edit-status__text strong {
+  display: block;
+  font-size: 0.85rem;
+  color: #16233a;
+}
+
+.bb-edit-status__text small {
+  display: block;
+  font-size: 0.72rem;
+  color: #8895a8;
+  margin-top: 0.05rem;
+}
+
+.bb-edit-status__check {
+  margin-left: auto;
+  width: 20px;
+  height: 20px;
+  border-radius: 999px;
+  border: 2px solid #cfd8e6;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+}
+
+.bb-edit-status:has(input:checked) {
+  border-color: #2f8ae0;
+  background: rgba(47, 138, 224, 0.05);
+  box-shadow: 0 0 0 3px rgba(47, 138, 224, 0.12);
+}
+
+.bb-edit-status:has(input:checked) .bb-edit-status__check {
+  border-color: #1c6dc4;
+  background: radial-gradient(circle, #1c6dc4 0 45%, #ffffff 50%);
+}
+
+.bb-edit-status:has(input:focus-visible) {
+  outline: 2px solid #6fb4ee;
+  outline-offset: 2px;
+}
+
+/* ---------- Rodapé fixo ---------- */
+.bb-edit-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.9rem 1.5rem;
+  border-top: 1px solid #edf2f7;
+  background: #ffffff;
+}
+
+.bb-edit-footer__nav {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.bb-edit-footer .bb-btn {
+  padding: 0.6rem 1.1rem;
+  font-size: 0.85rem;
+}
+
+.bb-edit-dirty {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #c98a1f;
+  display: none;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.bb-edit-dirty.is-visible {
+  display: inline-flex;
+}
+
+.bb-edit-dirty::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: #c98a1f;
+}
+
+/* ---------- Responsivo ---------- */
+@media (max-width: 640px) {
+  .bb-edit-header {
+    padding: 1rem 3rem 0.85rem 1rem;
+  }
+  .bb-edit-tabs {
+    padding: 0.5rem 0.75rem 0 0.75rem;
+  }
+  .bb-edit-tab {
+    font-size: 0.72rem;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  .bb-edit-footer {
+    padding: 0.75rem 1rem;
+    flex-wrap: wrap;
+  }
+  .bb-edit-footer__nav {
+    width: 100%;
+  }
+  .bb-edit-footer__nav .bb-btn {
+    flex: 1;
+  }
+  .bb-edit-photo {
+    flex-direction: column;
+    text-align: center;
+  }
+  .bb-edit-photo__actions {
+    justify-content: center;
+  }
+}

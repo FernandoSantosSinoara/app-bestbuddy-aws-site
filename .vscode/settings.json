@@ -1,0 +1,31 @@
+{
+  "css.lint.unknownAtRules": "ignore",
+  "scss.lint.unknownAtRules": "ignore",
+  "less.lint.unknownAtRules": "ignore",
+  "css.lint.unknownProperties": "ignore",
+  "css.lint.propertyIgnoredDueToDisplay": "ignore",
+  "files.associations": {
+    "*.css": "tailwindcss"
+  },
+  "python.analysis.typeCheckingMode": "off",
+  "python.analysis.diagnosticSeverityOverrides": {
+    "reportMissingImports": "none",
+    "reportMissingModuleSource": "none",
+    "reportAttributeAccessIssue": "none",
+    "reportUnusedImport": "none"
+  },
+  "pyright.analysis.typeCheckingMode": "off",
+  "pyright.analysis.diagnosticSeverityOverrides": {
+    "reportMissingImports": "none",
+    "reportMissingModuleSource": "none",
+    "reportAttributeAccessIssue": "none"
+  },
+  "python.analysis.extraPaths": [
+    "${workspaceFolder}",
+    "${workspaceFolder}/usuarios",
+    "${workspaceFolder}/animais",
+    "${workspaceFolder}/adocoes",
+    "${workspaceFolder}/comunidade",
+    "${workspaceFolder}/config"
+  ]
+}

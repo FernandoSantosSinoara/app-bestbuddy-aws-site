@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <!-- Gradiente de fundo característico do Best Buddy (Azul vibrante) -->
+    <linearGradient id="bb-bg-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3b8ffc" />
+      <stop offset="50%" stop-color="#2f80ed" />
+      <stop offset="100%" stop-color="#1963c6" />
+    </linearGradient>
+
+    <!-- Gradiente suave da patinha para dar volume -->
+    <linearGradient id="bb-paw-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="100%" stop-color="#f0f5fc" />
+    </linearGradient>
+
+    <!-- Sombra sutil interna e externa -->
+    <filter id="bb-shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2" stdDeviation="1.5" flood-color="#0a2b4d" flood-opacity="0.35" />
+    </filter>
+    <filter id="bb-glow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="1" stdDeviation="0.8" flood-color="#000000" flood-opacity="0.2" />
+    </filter>
+  </defs>
+
+  <!-- Fundo Squircle Suave -->
+  <rect width="64" height="64" rx="16" fill="url(#bb-bg-gradient)" filter="url(#bb-glow)" />
+
+  <!-- Borda sutil de destaque interno (sheen) -->
+  <rect x="1" y="1" width="62" height="62" rx="15" fill="none" stroke="#ffffff" stroke-width="1.2" stroke-opacity="0.35" />
+
+  <!-- Patinha Oficial Best Buddy -->
+  <g transform="translate(32, 33) scale(1.18) translate(-20, -20)" fill="url(#bb-paw-gradient)" filter="url(#bb-shadow)">
+    <!-- Almofada principal em formato de coração -->
+    <path d="M20 20c-5.5 0-10 5.2-10 9.6 0 3.2 2.2 5.4 5.4 5.4 2.2 0 3.3-1.2 4.6-1.2s2.4 1.2 4.6 1.2c3.2 0 5.4-2.2 5.4-5.4 0-4.4-4.5-9.6-10-9.6z" />
+    <!-- Dedinhos (Toes) -->
+    <ellipse cx="7.5" cy="18" rx="3.6" ry="4.9" transform="rotate(-25 7.5 18)" />
+    <ellipse cx="15" cy="9.5" rx="3.7" ry="5.1" />
+    <ellipse cx="25" cy="9.5" rx="3.7" ry="5.1" />
+    <ellipse cx="32.5" cy="18" rx="3.6" ry="4.9" transform="rotate(25 32.5 18)" />
+  </g>
+</svg>
