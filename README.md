@@ -56,6 +56,8 @@ Os manifests Kubernetes estão em `k8s/`. Eles executam o Django na porta `8000`
 
 Os manifests mantêm os nomes Deployment/Service/HPA do projeto anterior para atualizá-los em vez de criar um segundo Service conflitante no NodePort `30081`. O deploy espera que o RDS aceite conexões a partir dos nós EKS, que o cluster tenha métricas para o HPA e que o ALB encaminhe para esse NodePort. Configure `CORS_ALLOWED_ORIGINS` com a origem real do frontend antes de conectá-lo à API (por exemplo: `kubectl set env deployment/pessoas-service-deployment CORS_ALLOWED_ORIGINS=https://seu-frontend.example.com`).
 
+O workflow `.github/workflows/deploy.yml` executa os checks e testes Django em pushes para `main`/`develop` e em pull requests para `main`; somente push ou execução manual na branch `main` também cria e publica a imagem Docker no ECR e atualiza o Deployment no EKS. Configure estes GitHub Actions repository secrets: `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY` (com acesso ao ECR, EKS, RDS e Secrets Manager) e `DJANGO_SECRET_KEY`. O runner também precisa de permissão IAM para atualizar o cluster EKS e aplicar o Secret Kubernetes.
+
 O ALB existente atende apenas HTTP. Por isso, o manifest desativa o redirecionamento HTTPS do Django para permitir o health check e o tráfego atuais. **Não use essa configuração para tráfego público com credenciais/dados pessoais**: configure um listener HTTPS com certificado no ALB e então defina `SECURE_SSL_REDIRECT=True` no Deployment.
 
 Os uploads ainda usam `MEDIA_ROOT` no disco local do container. Configure armazenamento compartilhado/persistente (por exemplo, S3) antes de habilitar uploads em produção ou escalar para múltiplos pods.
