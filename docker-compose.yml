@@ -1,0 +1,62 @@
+services:
+  db:
+    image: mysql:8.0
+    container_name: bestbuddy_db
+    restart: unless-stopped
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    environment:
+      MYSQL_DATABASE: bestbuddy_db
+      MYSQL_USER: bestbuddy_user
+      MYSQL_PASSWORD: bestbuddy_pass
+      MYSQL_ROOT_PASSWORD: root_pass
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-proot_pass"]
+      interval: 5s
+      timeout: 5s
+      retries: 15
+      start_period: 30s
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: bestbuddy_api
+    restart: "no"
+    environment:
+      - USE_MYSQL=True
+      - DB_NAME=bestbuddy_db
+      - DB_USER=bestbuddy_user
+      - DB_PASSWORD=bestbuddy_pass
+      - DB_HOST=db
+      - DB_PORT=3306
+      - RUN_SEED=False
+    volumes:
+      - .:/app
+      - media_data:/app/media
+    ports:
+      - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: bestbuddy_front
+    restart: "no"
+    ports:
+      - "5500:80"
+    volumes:
+      - ./frontend:/usr/share/nginx/html
+      - ./frontend/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on:
+      - backend
+
+volumes:
+  mysql_data:
+  media_data:

@@ -1,0 +1,604 @@
+[
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "Usuarios",
+    "permissions": [
+      [
+        "view_pessoafisica",
+        "usuarios",
+        "pessoafisica"
+      ],
+      [
+        "view_pessoajuridica",
+        "usuarios",
+        "pessoajuridica"
+      ]
+    ]
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "07kriwjxn0xnwmve6rwnypisihkvswwz",
+  "fields": {
+    "session_data": ".eJxVjEEOwiAQRe_C2hBmChRduu8ZCAyDVA0kpV0Z765NutDtf-_9l_BhW4vfOi9-TuIiQJx-txjowXUH6R7qrUlqdV3mKHdFHrTLqSV-Xg_376CEXr61NRCBWRkYHZIjmzUoDGPOCpGBEmoEc9ag48DshsERWmVsikhJE4r3B8OyNyY:1wmJCL:UoATS4WwMIla-E02_WnO0C3s29sRytAS2ltF4zcUx6U",
+    "expire_date": "2026-08-04T22:44:25.093Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "73ighvain9squd1gjq1kt74anyr3wbfx",
+  "fields": {
+    "session_data": ".eJxVjEEOwiAQAP-yZ0NgKSz06L1vILsFpWrapLQn499Nkx70OjOZNyTet5r2VtY0ZejBw-WXCY_PMh8iP3i-L2pc5m2dRB2JOm1Tw5LL63q2f4PKrUIPwVljHYoWbWKOOnNw6F3RHaEfTSwR0ZIzRIF0JyaTlYISBW-OyTB8vqMXNn0:1x2Hxn:_fWM92h4ErPAiH3rcJRPsp-ti5ON6aYB8bVRIb21gyY",
+    "expire_date": "2026-09-18T00:39:27.244Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "a750zsg5dohbna2a83maxdnhayg3mfx5",
+  "fields": {
+    "session_data": ".eJxVjEEOwiAQRe_C2hBmChRduu8ZCAyDVA0kpV0Z765NutDtf-_9l_BhW4vfOi9-TuIiQJx-txjowXUH6R7qrUlqdV3mKHdFHrTLqSV-Xg_376CEXr61NRCBWRkYHZIjmzUoDGPOCpGBEmoEc9ag48DshsERWmVsikhJE4r3B8OyNyY:1wdYsd:8weBRzO9cbAtiJhxC7CO9CagZQKzvGNTY3Blx_W1r1U",
+    "expire_date": "2026-07-11T19:39:55.030Z"
+  }
+},
+{
+  "model": "usuarios.usuario",
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$57nca4d2hPZsgXtMp2wUDI$/rHQVJfdKht6TiM/tmHp7LAmHbWRSYVRiDaBYbcfv8M=",
+    "last_login": "2026-07-21T22:44:25.071Z",
+    "is_superuser": true,
+    "first_name": "",
+    "last_name": "",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2026-06-27T19:39:44.944Z",
+    "tipo": "",
+    "email": "admin@gmail.com",
+    "created_at": "2026-06-27T19:39:45.507Z",
+    "updated_at": "2026-06-27T19:39:45.507Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "usuarios.usuario",
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$5cl2gHzoPkzKTvZraAwpqL$yoCAcHlemdPFGUKAhkpOV2JvX4LjocmhHHR4QEq4M3E=",
+    "last_login": "2026-09-04T00:39:27.225Z",
+    "is_superuser": true,
+    "first_name": "",
+    "last_name": "",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2026-09-04T00:38:58.348Z",
+    "tipo": "",
+    "email": "admin@admin.com",
+    "created_at": "2026-09-04T00:38:59.351Z",
+    "updated_at": "2026-09-04T00:38:59.351Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "usuarios.usuario",
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$pnt6tKc9A3fhrXrgaPHHb0$Si8nYMeOJ+sjpbc1+aYn0NnxnKNn/12Gl2BOTLUwO/A=",
+    "last_login": null,
+    "is_superuser": false,
+    "first_name": "",
+    "last_name": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-09-07T22:41:05.799Z",
+    "tipo": "PF",
+    "email": "usuario@bestbuddy.com",
+    "created_at": "2026-09-07T22:41:05.799Z",
+    "updated_at": "2026-09-07T22:41:06.807Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "usuarios.usuario",
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$cigiZeuTDiag9wxFblNGQV$vF2uER3r/yhuY9zGtdOvMjByVyPH9FpjU0r6AF3RXj4=",
+    "last_login": null,
+    "is_superuser": false,
+    "first_name": "",
+    "last_name": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-09-07T22:41:45.539Z",
+    "tipo": "PF",
+    "email": "novo.adotante@teste.com",
+    "created_at": "2026-09-07T22:41:46.535Z",
+    "updated_at": "2026-09-07T22:41:46.535Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "usuarios.usuario",
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$abl0EgRIPskg2pUwPNrFme$YMU/aE8coPvtWEh/7eq3QZ5/p+gaMErJ2G3wt43QJs0=",
+    "last_login": null,
+    "is_superuser": false,
+    "first_name": "",
+    "last_name": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-09-07T22:42:27.360Z",
+    "tipo": "PF",
+    "email": "novo.adotante.1788820947@teste.com",
+    "created_at": "2026-09-07T22:42:28.356Z",
+    "updated_at": "2026-09-07T22:42:28.356Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "usuarios.usuario",
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$aNGZI4rkQBjkUQ8x4Iz0hp$HrPleDuieDBsKOTcRLThPzkGxHuUkXz/QoIdr3etN3M=",
+    "last_login": null,
+    "is_superuser": false,
+    "first_name": "",
+    "last_name": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-09-07T23:50:12.124Z",
+    "tipo": "PF",
+    "email": "novo.adotante.1788825012@teste.com",
+    "created_at": "2026-09-07T23:50:13.149Z",
+    "updated_at": "2026-09-07T23:50:13.149Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "usuarios.pessoafisica",
+  "pk": 1,
+  "fields": {
+    "usuario": [
+      "usuario@bestbuddy.com"
+    ],
+    "nome": "Ana Souza",
+    "cpf": "12345678901",
+    "telefone": "(16) 99999-0000",
+    "created_at": "2026-09-07T22:41:06.842Z",
+    "updated_at": "2026-09-07T22:41:06.842Z"
+  }
+},
+{
+  "model": "usuarios.pessoafisica",
+  "pk": 2,
+  "fields": {
+    "usuario": [
+      "novo.adotante@teste.com"
+    ],
+    "nome": "João Pedro",
+    "cpf": "98765432100",
+    "telefone": "(16) 98888-7777",
+    "created_at": "2026-09-07T22:41:46.570Z",
+    "updated_at": "2026-09-07T22:41:46.570Z"
+  }
+},
+{
+  "model": "usuarios.pessoafisica",
+  "pk": 3,
+  "fields": {
+    "usuario": [
+      "novo.adotante.1788820947@teste.com"
+    ],
+    "nome": "João Pedro",
+    "cpf": "01788820947",
+    "telefone": "(16) 98888-7777",
+    "created_at": "2026-09-07T22:42:28.375Z",
+    "updated_at": "2026-09-07T22:42:28.375Z"
+  }
+},
+{
+  "model": "usuarios.pessoafisica",
+  "pk": 4,
+  "fields": {
+    "usuario": [
+      "novo.adotante.1788825012@teste.com"
+    ],
+    "nome": "João Pedro",
+    "cpf": "01788825012",
+    "telefone": "(16) 98888-7777",
+    "created_at": "2026-09-07T23:50:13.168Z",
+    "updated_at": "2026-09-07T23:50:13.168Z"
+  }
+},
+{
+  "model": "animais.animal",
+  "pk": 1,
+  "fields": {
+    "sexo": "M",
+    "idade_aproximada": "Adulto",
+    "medicamento": "Não",
+    "castrado": "Sim",
+    "nome": "Max",
+    "raca": "SRD",
+    "contato": "(16) 99999-0001",
+    "descricao": "Dócil, adora brincar com bola.",
+    "imagem": null,
+    "created_at": "2026-09-07T22:41:06.854Z",
+    "updated_at": "2026-09-07T22:41:06.854Z"
+  }
+},
+{
+  "model": "animais.animal",
+  "pk": 2,
+  "fields": {
+    "sexo": "F",
+    "idade_aproximada": "Filhote",
+    "medicamento": "Não",
+    "castrado": "Não",
+    "nome": "Luna",
+    "raca": "Vira-lata caramelo",
+    "contato": "(16) 99999-0002",
+    "descricao": "Muito brincalhona, ótima com crianças.",
+    "imagem": null,
+    "created_at": "2026-09-07T22:41:06.865Z",
+    "updated_at": "2026-09-07T22:41:06.865Z"
+  }
+},
+{
+  "model": "animais.animal",
+  "pk": 3,
+  "fields": {
+    "sexo": "M",
+    "idade_aproximada": "Adulto",
+    "medicamento": "Sim",
+    "castrado": "Sim",
+    "nome": "Thor",
+    "raca": "Pastor Alemão",
+    "contato": "(16) 99999-0003",
+    "descricao": "Protetor, precisa de espaço para correr.",
+    "imagem": null,
+    "created_at": "2026-09-07T22:41:06.875Z",
+    "updated_at": "2026-09-07T22:41:06.875Z"
+  }
+},
+{
+  "model": "animais.animal",
+  "pk": 4,
+  "fields": {
+    "sexo": "F",
+    "idade_aproximada": "Idoso",
+    "medicamento": "Sim",
+    "castrado": "Sim",
+    "nome": "Nina",
+    "raca": "SRD",
+    "contato": "(16) 99999-0004",
+    "descricao": "Calma, ideal para apartamento.",
+    "imagem": null,
+    "created_at": "2026-09-07T22:41:06.884Z",
+    "updated_at": "2026-09-07T22:41:06.884Z"
+  }
+},
+{
+  "model": "animais.animal",
+  "pk": 5,
+  "fields": {
+    "sexo": "M",
+    "idade_aproximada": "Adulto",
+    "medicamento": "Não",
+    "castrado": "Sim",
+    "nome": "Bidu",
+    "raca": "Poodle",
+    "contato": "(16) 99999-0005",
+    "descricao": "Late pouco, já é castrado.",
+    "imagem": null,
+    "created_at": "2026-09-07T22:41:06.894Z",
+    "updated_at": "2026-09-07T22:41:06.894Z"
+  }
+},
+{
+  "model": "animais.animal",
+  "pk": 6,
+  "fields": {
+    "sexo": "F",
+    "idade_aproximada": "Filhote",
+    "medicamento": "Não",
+    "castrado": "Não",
+    "nome": "Mel",
+    "raca": "SRD",
+    "contato": "(16) 99999-0006",
+    "descricao": "Resgatada há 1 semana, em observação.",
+    "imagem": null,
+    "created_at": "2026-09-07T22:41:06.903Z",
+    "updated_at": "2026-09-07T22:41:06.903Z"
+  }
+},
+{
+  "model": "adocoes.adocao",
+  "pk": 1,
+  "fields": {
+    "animal": 1,
+    "adotante": [
+      "usuario@bestbuddy.com"
+    ],
+    "nome_adotante": "Ana Souza",
+    "email_adotante": "usuario@bestbuddy.com",
+    "telefone_adotante": "(16) 99999-0000",
+    "ja_teve_animais": "Sim",
+    "ja_vacinado": "Sim",
+    "motivacao": "Amo animais e tenho quintal grande.",
+    "status": "A",
+    "created_at": "2026-09-07T22:41:45.505Z",
+    "updated_at": "2026-09-07T22:41:45.505Z"
+  }
+},
+{
+  "model": "adocoes.adocao",
+  "pk": 2,
+  "fields": {
+    "animal": 1,
+    "adotante": [
+      "usuario@bestbuddy.com"
+    ],
+    "nome_adotante": "Ana Souza",
+    "email_adotante": "usuario@bestbuddy.com",
+    "telefone_adotante": "(16) 99999-0000",
+    "ja_teve_animais": "Sim",
+    "ja_vacinado": "Sim",
+    "motivacao": "Amo animais e tenho quintal grande.",
+    "status": "A",
+    "created_at": "2026-09-07T22:41:59.169Z",
+    "updated_at": "2026-09-07T22:41:59.169Z"
+  }
+},
+{
+  "model": "adocoes.adocao",
+  "pk": 3,
+  "fields": {
+    "animal": 1,
+    "adotante": [
+      "usuario@bestbuddy.com"
+    ],
+    "nome_adotante": "Ana Souza",
+    "email_adotante": "usuario@bestbuddy.com",
+    "telefone_adotante": "(16) 99999-0000",
+    "ja_teve_animais": "Sim",
+    "ja_vacinado": "Sim",
+    "motivacao": "Amo animais e tenho quintal grande.",
+    "status": "A",
+    "created_at": "2026-09-07T22:42:27.321Z",
+    "updated_at": "2026-09-07T22:42:27.321Z"
+  }
+},
+{
+  "model": "adocoes.adocao",
+  "pk": 4,
+  "fields": {
+    "animal": 1,
+    "adotante": [
+      "usuario@bestbuddy.com"
+    ],
+    "nome_adotante": "Ana Souza",
+    "email_adotante": "usuario@bestbuddy.com",
+    "telefone_adotante": "(16) 99999-0000",
+    "ja_teve_animais": "Sim",
+    "ja_vacinado": "Sim",
+    "motivacao": "Amo animais e tenho quintal grande.",
+    "status": "A",
+    "created_at": "2026-09-07T23:50:12.094Z",
+    "updated_at": "2026-09-07T23:50:12.094Z"
+  }
+},
+{
+  "model": "comunidade.noticia",
+  "pk": 1,
+  "fields": {
+    "titulo": "Campanha de Castração e Vacinação",
+    "resumo": "Neste sábado no Parque Central, a partir das 9h. Vagas limitadas!",
+    "conteudo": "Traga seu pet para a campanha municipal.",
+    "imagem": null,
+    "created_at": "2026-09-07T22:41:06.912Z"
+  }
+},
+{
+  "model": "comunidade.post",
+  "pk": 1,
+  "fields": {
+    "autor": "Carlos Lima",
+    "usuario": null,
+    "texto": "Hoje foi dia de campanha de castração no bairro Jardim Elite. Obrigado a todos que ajudaram!",
+    "created_at": "2026-09-07T22:41:06.929Z"
+  }
+},
+{
+  "model": "comunidade.post",
+  "pk": 2,
+  "fields": {
+    "autor": "Best Buddy ONG",
+    "usuario": null,
+    "texto": "Precisamos de doações de ração para os próximos 15 dias. Ponto de coleta na sede.",
+    "created_at": "2026-09-07T22:41:06.942Z"
+  }
+},
+{
+  "model": "comunidade.animaldesaparecido",
+  "pk": 1,
+  "fields": {
+    "nome": "Max",
+    "local": "Jardim Botânico, São Paulo, SP",
+    "contato": "(11) 91234-5678",
+    "descricao": "Sumiu durante um passeio, muito medroso com estranhos.",
+    "foto": null,
+    "encontrado": false,
+    "created_at": "2026-09-07T22:41:06.955Z"
+  }
+},
+{
+  "model": "comunidade.animaldesaparecido",
+  "pk": 2,
+  "fields": {
+    "nome": "Bela",
+    "local": "Parque SP, Araraquara, SP",
+    "contato": "(16) 98888-1122",
+    "descricao": "Desapareceu após fogos de artifício.",
+    "foto": null,
+    "encontrado": false,
+    "created_at": "2026-09-07T22:41:06.966Z"
+  }
+},
+{
+  "model": "comunidade.animaldesaparecido",
+  "pk": 3,
+  "fields": {
+    "nome": "Patrick Estrela",
+    "local": "Jd. Carmo, Araraquara, SP",
+    "contato": "(16) 97777-3344",
+    "descricao": "Última vez visto perto do mercado.",
+    "foto": null,
+    "encontrado": false,
+    "created_at": "2026-09-07T22:41:06.975Z"
+  }
+},
+{
+  "model": "comunidade.animaldesaparecido",
+  "pk": 4,
+  "fields": {
+    "nome": "Pipoca",
+    "local": "Centro, São Carlos, SP",
+    "contato": "(16) 91111-2222",
+    "descricao": "Gatinho siamês de coleira azul.",
+    "foto": null,
+    "encontrado": false,
+    "created_at": "2026-09-07T22:41:45.526Z"
+  }
+},
+{
+  "model": "comunidade.animaldesaparecido",
+  "pk": 5,
+  "fields": {
+    "nome": "Pipoca",
+    "local": "Centro, São Carlos, SP",
+    "contato": "(16) 91111-2222",
+    "descricao": "Gatinho siamês de coleira azul.",
+    "foto": null,
+    "encontrado": false,
+    "created_at": "2026-09-07T22:41:59.189Z"
+  }
+},
+{
+  "model": "comunidade.animaldesaparecido",
+  "pk": 6,
+  "fields": {
+    "nome": "Pipoca",
+    "local": "Centro, São Carlos, SP",
+    "contato": "(16) 91111-2222",
+    "descricao": "Gatinho siamês de coleira azul.",
+    "foto": null,
+    "encontrado": false,
+    "created_at": "2026-09-07T22:42:27.345Z"
+  }
+},
+{
+  "model": "comunidade.animaldesaparecido",
+  "pk": 7,
+  "fields": {
+    "nome": "Pipoca",
+    "local": "Centro, São Carlos, SP",
+    "contato": "(16) 91111-2222",
+    "descricao": "Gatinho siamês de coleira azul.",
+    "foto": null,
+    "encontrado": false,
+    "created_at": "2026-09-07T23:50:12.112Z"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 1,
+  "fields": {
+    "action_time": "2026-06-30T23:10:37.352Z",
+    "user": [
+      "admin@gmail.com"
+    ],
+    "content_type": [
+      "auth",
+      "group"
+    ],
+    "object_id": "1",
+    "object_repr": "Usuarios",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 2,
+  "fields": {
+    "action_time": "2026-07-21T23:25:34.790Z",
+    "user": [
+      "admin@gmail.com"
+    ],
+    "content_type": [
+      "usuarios",
+      "usuario"
+    ],
+    "object_id": "5",
+    "object_repr": "cristianhenrrique704@gmail.com",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 3,
+  "fields": {
+    "action_time": "2026-07-21T23:25:38.580Z",
+    "user": [
+      "admin@gmail.com"
+    ],
+    "content_type": [
+      "usuarios",
+      "usuario"
+    ],
+    "object_id": "4",
+    "object_repr": "cristianhenrrique705@gmail.com",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 4,
+  "fields": {
+    "action_time": "2026-07-21T23:25:42.821Z",
+    "user": [
+      "admin@gmail.com"
+    ],
+    "content_type": [
+      "usuarios",
+      "usuario"
+    ],
+    "object_id": "3",
+    "object_repr": "cristian.hdiniz@senacsp.edu.gov",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 5,
+  "fields": {
+    "action_time": "2026-07-21T23:25:46.384Z",
+    "user": [
+      "admin@gmail.com"
+    ],
+    "content_type": [
+      "usuarios",
+      "usuario"
+    ],
+    "object_id": "2",
+    "object_repr": "cristianhenrrique706@gmail.com",
+    "action_flag": 3,
+    "change_message": ""
+  }
+}
+]

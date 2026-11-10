@@ -1,0 +1,91 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pessoas-service-deployment
+  labels:
+    app: bestbuddy-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bestbuddy-api
+  template:
+    metadata:
+      labels:
+        app: bestbuddy-api
+    spec:
+      terminationGracePeriodSeconds: 30
+      containers:
+        - name: bestbuddy-api
+          image: 188785237347.dkr.ecr.us-east-2.amazonaws.com/hello-aws-service:bestbuddy-api
+          imagePullPolicy: Always
+          ports:
+            - name: http
+              containerPort: 8000
+              protocol: TCP
+          env:
+            - name: DEBUG
+              value: "False"
+            - name: SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: bestbuddy-api-secrets
+                  key: SECRET_KEY
+            - name: ALLOWED_HOSTS
+              value: ".elb.amazonaws.com"
+            - name: USE_MYSQL
+              value: "True"
+            - name: DB_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: bestbuddy-api-secrets
+                  key: DB_HOST
+            - name: DB_PORT
+              value: "3306"
+            - name: DB_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: bestbuddy-api-secrets
+                  key: DB_NAME
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: bestbuddy-api-secrets
+                  key: DB_USER
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: bestbuddy-api-secrets
+                  key: DB_PASSWORD
+            - name: SECURE_SSL_REDIRECT
+              value: "False"
+            - name: RUN_SEED
+              value: "False"
+          resources:
+            requests:
+              memory: "768Mi"
+              cpu: "250m"
+            limits:
+              memory: "1536Mi"
+              cpu: "1"
+          startupProbe:
+            httpGet:
+              path: /healthz/live/
+              port: http
+            periodSeconds: 10
+            timeoutSeconds: 3
+            failureThreshold: 30
+          livenessProbe:
+            httpGet:
+              path: /healthz/live/
+              port: http
+            periodSeconds: 10
+            timeoutSeconds: 3
+            failureThreshold: 3
+          readinessProbe:
+            httpGet:
+              path: /healthz/ready/
+              port: http
+            periodSeconds: 5
+            timeoutSeconds: 3
+            failureThreshold: 3

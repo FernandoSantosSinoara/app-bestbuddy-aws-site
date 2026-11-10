@@ -1,0 +1,16 @@
+{
+  "name": "best-buddy-frontend",
+  "version": "1.0.0",
+  "description": "Front-end estático (HTML/JS puro) do site de adoção Best Buddy, estilizado com Tailwind CSS.",
+  "private": true,
+  "scripts": {
+    "build:css": "tailwindcss -i ./css/src/input.css -o ./css/tailwind.build.css --minify",
+    "watch:css": "tailwindcss -i ./css/src/input.css -o ./css/tailwind.build.css --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "tailwindcss": "^3.4.19"
+  }
+}

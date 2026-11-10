@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Best Buddy | Detalhe do animal</title>
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg" />
+  <link rel="alternate icon" type="image/x-icon" href="../../favicon.ico" />
+  <link rel="apple-touch-icon" href="../../apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="stylesheet" href="../../css/tailwind.build.css" />
+  <link rel="stylesheet" href="../../css/edit-modal.css" />
+</head>
+
+<body>
+  <div class="bb-shell">
+    <div id="bb-nav"></div>
+
+    <main class="bb-main">
+      <div class="bb-container">
+        <div id="bb-detail"></div>
+      </div>
+    </main>
+
+    <!-- Modal de Edição de Anúncio (somente o dono do anúncio) -->
+    <div id="edit-modal" class="bb-modal-overlay hidden" role="dialog" aria-modal="true"
+      aria-labelledby="edit-modal-title">
+      <div class="bb-modal-dialog bb-edit-dialog">
+        <button id="edit-modal-close-btn" class="bb-modal-close-btn" type="button"
+          aria-label="Fechar edição">&times;</button>
+
+        <!-- Cabeçalho: foto + nome + tipo de anúncio -->
+        <div class="bb-edit-header">
+          <div class="bb-edit-header__thumb" id="edit-header-thumb">🐾</div>
+          <div class="bb-edit-header__info">
+            <p class="bb-edit-header__eyebrow">✏️ Editar anúncio</p>
+            <h2 class="bb-edit-header__title" id="edit-modal-title">Pet</h2>
+            <span class="bb-edit-chip bb-edit-chip--adocao" id="edit-header-chip">🐾 Adoção</span>
+          </div>
+        </div>
+
+        <!-- Abas -->
+        <div class="bb-edit-tabs" role="tablist">
+          <button type="button" class="bb-edit-tab is-active" id="edit-tab-sobre" data-edit-tab="0" role="tab"
+            aria-selected="true" aria-controls="edit-panel-sobre">
+            <span class="bb-edit-tab__num">1</span> Sobre o pet
+          </button>
+          <button type="button" class="bb-edit-tab" id="edit-tab-local" data-edit-tab="1" role="tab"
+            aria-selected="false" aria-controls="edit-panel-local">
+            <span class="bb-edit-tab__num">2</span> Saúde e local
+          </button>
+          <button type="button" class="bb-edit-tab" id="edit-tab-status" data-edit-tab="2" role="tab"
+            aria-selected="false" aria-controls="edit-panel-status">
+            <span class="bb-edit-tab__num">3</span> Foto e status
+          </button>
+        </div>
+
+        <form id="form-edit-pet" novalidate style="display: contents;">
+          <div class="bb-modal-body bb-edit-body">
+            <div id="edit-modal-alert"></div>
+
+            <!-- Aba 1: Sobre o pet -->
+            <div class="bb-edit-panel is-active" id="edit-panel-sobre" role="tabpanel">
+              <div class="bb-edit-field">
+                <label class="bb-label" for="edit-nome">Nome do pet <span class="bb-edit-required">*</span></label>
+                <input class="bb-input" type="text" id="edit-nome" maxlength="50" placeholder="Ex: Bob, Pipoca..." />
+              </div>
+
+              <div class="bb-edit-field">
+                <span class="bb-label">Tipo de animal</span>
+                <div class="bb-edit-segmented" id="edit-tipo-group">
+                  <label><input type="radio" name="edit-tipo" value="CACHORRO" /><span>🐶 Cachorro</span></label>
+                  <label><input type="radio" name="edit-tipo" value="GATO" /><span>🐱 Gato</span></label>
+                  <label><input type="radio" name="edit-tipo" value="OUTRO" /><span>🐾 Outro</span></label>
+                </div>
+              </div>
+
+              <div class="bb-edit-field">
+                <span class="bb-label">Sexo</span>
+                <div class="bb-edit-segmented" id="edit-sexo-group">
+                  <label><input type="radio" name="edit-sexo" value="M" /><span>♂ Macho</span></label>
+                  <label><input type="radio" name="edit-sexo" value="F" /><span>♀ Fêmea</span></label>
+                  <label><input type="radio" name="edit-sexo" value="I" /><span>Não sei</span></label>
+                </div>
+              </div>
+
+              <div class="bb-modal-grid-2 bb-edit-field">
+                <div>
+                  <label class="bb-label" for="edit-raca">Raça</label>
+                  <input class="bb-input" type="text" id="edit-raca" maxlength="50" placeholder="Ex: SRD, Poodle..." />
+                </div>
+                <div>
+                  <label class="bb-label" for="edit-idade">Idade aproximada</label>
+                  <select class="bb-input" id="edit-idade">
+                    <option value="">Não informada</option>
+                    <option value="Filhote">Filhote</option>
+                    <option value="Adulto">Adulto</option>
+                    <option value="Idoso">Idoso</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="bb-edit-field">
+                <label class="bb-label" for="edit-descricao">Descrição / Temperamento <span
+                    class="bb-edit-required">*</span></label>
+                <textarea class="bb-input" id="edit-descricao" rows="3" maxlength="255"
+                  placeholder="Conte um pouco sobre o jeitinho do pet..."></textarea>
+                <p class="bb-edit-hint"><span>Seja breve e objetivo.</span><span id="edit-descricao-count">0/255</span>
+                </p>
+              </div>
+            </div>
+
+            <!-- Aba 2: Saúde e local -->
+            <div class="bb-edit-panel" id="edit-panel-local" role="tabpanel">
+              <div class="bb-edit-section">
+                <h3 class="bb-edit-section__title">🩺 Saúde</h3>
+                <div class="bb-modal-grid-2">
+                  <div>
+                    <label class="bb-label" for="edit-castrado">Castrado</label>
+                    <select class="bb-input" id="edit-castrado">
+                      <option value="">Não informado</option>
+                      <option value="Sim">Sim</option>
+                      <option value="Não">Não</option>
+                      <option value="Não sei">Não sei</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="bb-label" for="edit-medicamento">Usa medicamentos?</label>
+                    <select class="bb-input" id="edit-medicamento">
+                      <option value="">Não informado</option>
+                      <option value="Sim">Sim, contínuos</option>
+                      <option value="Não">Não</option>
+                      <option value="Não sei">Não sei</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="bb-edit-section">
+                <h3 class="bb-edit-section__title">📍 Localização</h3>
+                <div class="bb-modal-grid-2 bb-edit-field">
+                  <div>
+                    <label class="bb-label" for="edit-estado">Estado (UF) <span
+                        class="bb-edit-required">*</span></label>
+                    <select class="bb-input" id="edit-estado">
+                      <option value="">Selecione...</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="bb-label" for="edit-cidade">Cidade <span class="bb-edit-required">*</span></label>
+                    <input class="bb-input" type="text" id="edit-cidade" list="edit-cidades-list" maxlength="100"
+                      autocomplete="off" placeholder="Digite a cidade..." />
+                    <datalist id="edit-cidades-list"></datalist>
+                  </div>
+                </div>
+                <div class="bb-edit-field hidden" id="edit-wrap-local">
+                  <label class="bb-label" for="edit-local">Último local visto <span
+                      class="bb-edit-required">*</span></label>
+                  <input class="bb-input" type="text" id="edit-local" maxlength="200"
+                    placeholder="Ex: Próximo à praça central, Bairro X..." />
+                </div>
+              </div>
+            </div>
+
+            <!-- Aba 3: Foto e status -->
+            <div class="bb-edit-panel" id="edit-panel-status" role="tabpanel">
+              <div class="bb-edit-section">
+                <h3 class="bb-edit-section__title">📷 Foto do anúncio</h3>
+                <div class="bb-edit-photo">
+                  <div class="bb-edit-photo__img" id="edit-photo-img">🐾</div>
+                  <div class="bb-edit-photo__info">
+                    <p class="bb-edit-photo__name" id="edit-photo-name">Foto atual</p>
+                    <p class="bb-edit-photo__meta" id="edit-photo-meta">JPEG, PNG ou WebP • otimizada automaticamente
+                    </p>
+                    <div class="bb-edit-photo__actions">
+                      <button type="button" class="bb-edit-mini-btn" id="edit-photo-change-btn">🔄 Trocar foto</button>
+                      <button type="button" class="bb-edit-mini-btn bb-edit-mini-btn--ghost hidden"
+                        id="edit-photo-undo-btn">✕ Manter a atual</button>
+                    </div>
+                  </div>
+                </div>
+                <input type="file" id="edit-imagem" class="hidden"
+                  accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp" />
+              </div>
+
+              <div class="bb-edit-section">
+                <h3 class="bb-edit-section__title">📌 Situação do anúncio</h3>
+                <div class="bb-edit-status-list" id="edit-status-list" role="radiogroup"
+                  aria-label="Situação do anúncio"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Rodapé fixo -->
+          <div class="bb-edit-footer">
+            <span class="bb-edit-dirty" id="edit-dirty-indicator">Alterações não salvas</span>
+            <div class="bb-edit-footer__nav" style="margin-left: auto;">
+              <button class="bb-btn bb-btn--secondary" type="button" id="edit-modal-cancel-btn">Cancelar</button>
+              <button class="bb-btn bb-btn--primary" type="submit" id="edit-modal-submit-btn">Salvar alterações</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div id="bb-footer"></div>
+  </div>
+
+  <script src="../../js/config.js"></script>
+  <script src="../../js/utils/storage.js"></script>
+  <script src="../../js/utils/validation.js"></script>
+  <script src="../../js/mocks/mock-utils.js"></script>
+  <script src="../../js/mocks/mock-data.js"></script>
+  <script src="../../js/api/client.js"></script>
+  <script src="../../js/services/ibgeService.js"></script>
+  <script src="../../js/services/animalService.js"></script>
+  <script src="../../js/services/authService.js"></script>
+  <script src="../../js/utils/header-scroll.js"></script>
+  <script src="../../js/components/Navigation.js?v=bb3"></script>
+  <script src="../../js/components/Footer.js?v=bb3"></script>
+  <script src="../../js/components/CookieBanner.js"></script>
+  <script src="../../js/components/StateView.js"></script>
+  <script src="../../js/utils/click-limiter.js"></script>
+  <script src="../../js/utils/image-compressor.js"></script>
+  <script src="../../js/pages/animals-edit.js?v=3"></script>
+  <script src="../../js/pages/animal-detail.js?v=2"></script>
+
+</body>
+
+</html>
