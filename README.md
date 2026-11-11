@@ -36,25 +36,35 @@ docker compose up --build
 
 ---
 
-## ☁️ Deploy do Backend no EKS
+## ☁️ Deploy no EKS
 
-Os manifests Kubernetes estão em `k8s/`. Eles executam o Django na porta `8000`, expõem o NodePort `30081` esperado pelo ALB da infraestrutura e usam `/healthz/ready/` para verificar o banco.
+Os manifests Kubernetes estão em `k8s/`. Eles executam o frontend estático em Nginx no NodePort `30080` e a API Django na porta `8000`/NodePort `30081`. O Nginx atende a página inicial em `/`, encaminha `/api/` para o Service `pessoas-service` e o ALB verifica o frontend em `/`.
 
-1. Faça build e envie a imagem para o ECR usado pela infraestrutura:
-   ```powershell
-   $registry = "188785237347.dkr.ecr.us-east-2.amazonaws.com/hello-aws-service"
-   aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin $registry
-   docker build -t "${registry}:bestbuddy-api" .
-   docker push "${registry}:bestbuddy-api"
-   ```
-2. Crie no cluster o Secret `bestbuddy-api-secrets` com as chaves `SECRET_KEY`, `DB_HOST`, `DB_NAME`, `DB_USER` e `DB_PASSWORD`. Use os dados do RDS; não grave esses valores nos manifests nem no repositório.
-3. Aplique os manifests:
+O workflow `.github/workflows/deploy.yml` constrói e envia as imagens do backend e do frontend para o ECR, aplica os manifests e aguarda o rollout dos dois Deployments. Somente push ou execução manual na branch `main` faz deploy; pull requests e pushes em `develop` executam apenas os checks.
+
+Configure estes GitHub Actions repository secrets:
+
+- `AWS_ACCESS_KEY_ID` e `AWS_SECRET_ACCESS_KEY`, com acesso ao ECR, EKS, RDS e Secrets Manager;
+- `DJANGO_SECRET_KEY`, usada como `SECRET_KEY` do Django.
+
+O runner também precisa de permissão IAM para atualizar o cluster EKS e aplicar os recursos Kubernetes. A role de execução do Terraform deve ser aplicada com o `app_health_check_path` definido como `/`, para que a configuração persistente do ALB corresponda ao frontend.
+
+Para fazer deploy, envie as alterações para `main` ou execute manualmente o workflow na branch `main`. Depois que o rollout concluir, abra a URL do ALB na porta 80, sem sufixo de porta:
+
+```text
+http://<alb-dns-name>/
+```
+
+O backend continua disponível diretamente pela porta `8081`. O frontend usa o caminho relativo `/api/` e o Nginx faz proxy para a API no cluster, sem exigir configuração de CORS entre frontend e API.
+
+Para aplicar os manifests manualmente, primeiro publique as imagens no ECR e crie no cluster o Secret `bestbuddy-api-secrets` com `SECRET_KEY`, `DB_HOST`, `DB_NAME`, `DB_USER` e `DB_PASSWORD`. Use os dados do RDS; não grave esses valores nos manifests nem no repositório. Então execute:
+
    ```powershell
    kubectl apply -f k8s/
    kubectl get pods,services,hpa
    ```
 
-Os manifests mantêm os nomes Deployment/Service/HPA do projeto anterior para atualizá-los em vez de criar um segundo Service conflitante no NodePort `30081`. O deploy espera que o RDS aceite conexões a partir dos nós EKS, que o cluster tenha métricas para o HPA e que o ALB encaminhe para esse NodePort. Configure `CORS_ALLOWED_ORIGINS` com a origem real do frontend antes de conectá-lo à API (por exemplo: `kubectl set env deployment/pessoas-service-deployment CORS_ALLOWED_ORIGINS=https://seu-frontend.example.com`).
+O deploy espera que o RDS aceite conexões a partir dos nós EKS e que o cluster tenha métricas para o HPA.
 
 O workflow `.github/workflows/deploy.yml` executa os checks e testes Django em pushes para `main`/`develop` e em pull requests para `main`; somente push ou execução manual na branch `main` também cria e publica a imagem Docker no ECR e atualiza o Deployment no EKS. Configure estes GitHub Actions repository secrets: `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY` (com acesso ao ECR, EKS, RDS e Secrets Manager) e `DJANGO_SECRET_KEY`. O runner também precisa de permissão IAM para atualizar o cluster EKS e aplicar o Secret Kubernetes.
 

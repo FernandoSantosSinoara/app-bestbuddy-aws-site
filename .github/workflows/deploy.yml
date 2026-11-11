@@ -67,10 +67,20 @@ jobs:
         env:
           ECR_REGISTRY: ${{ steps.ecr.outputs.registry }}
         run: |
-          IMAGE="$ECR_REGISTRY/$ECR_REPOSITORY"
-          docker build --pull -t "$IMAGE:$GITHUB_SHA" -t "$IMAGE:bestbuddy-api" .
-          docker push "$IMAGE:$GITHUB_SHA"
-          docker push "$IMAGE:bestbuddy-api"
+          API_IMAGE="$ECR_REGISTRY/$ECR_REPOSITORY"
+          FRONTEND_IMAGE="$ECR_REGISTRY/$ECR_REPOSITORY"
+
+          docker build --pull -t "$API_IMAGE:$GITHUB_SHA" -t "$API_IMAGE:bestbuddy-api" .
+          docker push "$API_IMAGE:$GITHUB_SHA"
+          docker push "$API_IMAGE:bestbuddy-api"
+
+          docker build --pull \
+            --build-arg NGINX_CONFIG=nginx.k8s.conf \
+            -t "$FRONTEND_IMAGE:$GITHUB_SHA-frontend" \
+            -t "$FRONTEND_IMAGE:bestbuddy-frontend" \
+            ./frontend
+          docker push "$FRONTEND_IMAGE:$GITHUB_SHA-frontend"
+          docker push "$FRONTEND_IMAGE:bestbuddy-frontend"
 
       - name: Configure kubectl
         run: aws eks update-kubeconfig --name "$EKS_CLUSTER_NAME" --region "$AWS_REGION"
@@ -124,6 +134,10 @@ jobs:
         env:
           ECR_REGISTRY: ${{ steps.ecr.outputs.registry }}
         run: |
-          IMAGE="$ECR_REGISTRY/$ECR_REPOSITORY:$GITHUB_SHA"
-          kubectl set image "deployment/$K8S_DEPLOYMENT" "$K8S_CONTAINER=$IMAGE"
+          API_IMAGE="$ECR_REGISTRY/$ECR_REPOSITORY:$GITHUB_SHA"
+          FRONTEND_IMAGE="$ECR_REGISTRY/$ECR_REPOSITORY:$GITHUB_SHA-frontend"
+
+          kubectl set image "deployment/$K8S_DEPLOYMENT" "$K8S_CONTAINER=$API_IMAGE"
+          kubectl set image deployment/bestbuddy-frontend "bestbuddy-frontend=$FRONTEND_IMAGE"
           kubectl rollout status "deployment/$K8S_DEPLOYMENT" --timeout=300s
+          kubectl rollout status deployment/bestbuddy-frontend --timeout=300s
