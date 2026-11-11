@@ -191,6 +191,7 @@ if ANIMAL_MEDIA_BUCKET:
             'OPTIONS': {
                 'bucket_name': ANIMAL_MEDIA_BUCKET,
                 'region_name': AWS_REGION,
+                'addressing_style': 'path',
                 'default_acl': None,
                 'querystring_auth': True,
                 'file_overwrite': False,
