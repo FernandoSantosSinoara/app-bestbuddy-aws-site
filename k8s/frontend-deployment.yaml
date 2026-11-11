@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bestbuddy-frontend
+  labels:
+    app: bestbuddy-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bestbuddy-frontend
+  template:
+    metadata:
+      labels:
+        app: bestbuddy-frontend
+    spec:
+      containers:
+        - name: bestbuddy-frontend
+          image: 188785237347.dkr.ecr.us-east-2.amazonaws.com/hello-aws-service:bestbuddy-frontend
+          imagePullPolicy: Always
+          ports:
+            - name: http
+              containerPort: 80
+              protocol: TCP
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "50m"
+            limits:
+              memory: "128Mi"
+              cpu: "200m"
+          startupProbe:
+            httpGet:
+              path: /
+              port: http
+            periodSeconds: 5
+            timeoutSeconds: 2
+            failureThreshold: 12
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+            periodSeconds: 10
+            timeoutSeconds: 2
+            failureThreshold: 3
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+            periodSeconds: 5
+            timeoutSeconds: 2
+            failureThreshold: 3

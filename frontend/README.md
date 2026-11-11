@@ -145,4 +145,4 @@ frontend/
 │   └── tailwind.build.css     # CSS gerado e minificado carregado pelas páginas
 ```
 
-Não há deploy automático do frontend configurado neste projeto. Para executá-lo com o backend e o Nginx localmente, use `docker compose up --build` a partir da raiz do repositório.
+O workflow `.github/workflows/deploy.yml` publica o frontend no ECR e o implanta no EKS junto com a API. Após o rollout na branch `main`, acesse a raiz da URL do ALB (`http://<alb-dns-name>/`). Em produção, o Nginx encaminha `/api/` ao Service `pessoas-service`; localmente, `docker compose up --build` continua usando a configuração Nginx de desenvolvimento.
