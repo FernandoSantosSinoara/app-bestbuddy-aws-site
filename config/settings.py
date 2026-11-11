@@ -176,6 +176,31 @@ CORS_ALLOWED_ORIGINS = list(dict.fromkeys(default_cors))
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
+ANIMAL_MEDIA_BUCKET = os.getenv('ANIMAL_MEDIA_BUCKET', '').strip()
+AWS_REGION = os.getenv('AWS_REGION', 'us-east-2')
+
+if not DEBUG and not ANIMAL_MEDIA_BUCKET:
+    raise ImproperlyConfigured(
+        'ANIMAL_MEDIA_BUCKET must be set when DEBUG=False.'
+    )
+
+if ANIMAL_MEDIA_BUCKET:
+    STORAGES = {
+        'default': {
+            'BACKEND': 'storages.backends.s3.S3Storage',
+            'OPTIONS': {
+                'bucket_name': ANIMAL_MEDIA_BUCKET,
+                'region_name': AWS_REGION,
+                'default_acl': None,
+                'querystring_auth': True,
+                'file_overwrite': False,
+            },
+        },
+        'staticfiles': {
+            'BACKEND': 'django.contrib.staticfiles.storage.StaticFilesStorage',
+        },
+    }
+
 # Email Configuration
 EMAIL_BACKEND = os.getenv('EMAIL_BACKEND', 'django.core.mail.backends.console.EmailBackend')
 EMAIL_HOST = os.getenv('EMAIL_HOST', 'localhost')
