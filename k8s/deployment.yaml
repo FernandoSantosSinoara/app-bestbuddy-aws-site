@@ -1,3 +1,9 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: bestbuddy-api
+  namespace: default
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -15,6 +21,7 @@ spec:
         app: bestbuddy-api
     spec:
       terminationGracePeriodSeconds: 30
+      serviceAccountName: bestbuddy-api
       containers:
         - name: bestbuddy-api
           image: 188785237347.dkr.ecr.us-east-2.amazonaws.com/hello-aws-service:bestbuddy-api
@@ -26,6 +33,10 @@ spec:
           env:
             - name: DEBUG
               value: "False"
+            - name: ANIMAL_MEDIA_BUCKET
+              value: "bestbuddy-animal-media-188785237347-us-east-2"
+            - name: AWS_REGION
+              value: "us-east-2"
             - name: SECRET_KEY
               valueFrom:
                 secretKeyRef:

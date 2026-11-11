@@ -70,7 +70,16 @@ O workflow `.github/workflows/deploy.yml` executa os checks e testes Django em p
 
 O ALB existente atende apenas HTTP. Por isso, o manifest desativa o redirecionamento HTTPS do Django para permitir o health check e o tráfego atuais. **Não use essa configuração para tráfego público com credenciais/dados pessoais**: configure um listener HTTPS com certificado no ALB e então defina `SECURE_SSL_REDIRECT=True` no Deployment.
 
-Os uploads ainda usam `MEDIA_ROOT` no disco local do container. Configure armazenamento compartilhado/persistente (por exemplo, S3) antes de habilitar uploads em produção ou escalar para múltiplos pods.
+Em produção, o Terraform provisiona um bucket S3 privado para os uploads e associa uma role IAM de privilégio mínimo ao service account da API via EKS Pod Identity. O Django usa URLs pré-assinadas para leitura e grava os arquivos no S3; configure e aplique o Terraform antes do deploy da aplicação. O nome criado fica disponível na saída `animal_media_bucket_name` e deve corresponder a `ANIMAL_MEDIA_BUCKET` em `k8s/deployment.yaml`. Em desenvolvimento, sem `ANIMAL_MEDIA_BUCKET`, os arquivos continuam em `MEDIA_ROOT` e são servidos pelo Django quando `DEBUG=True`.
+
+Antes de habilitar o armazenamento S3 em uma instalação que já tenha uploads locais, copie os arquivos existentes para o bucket preservando os caminhos relativos de `MEDIA_ROOT` (por exemplo, `animais/<arquivo>`). Faça primeiro um dry run e depois repita sem `--dryrun`:
+
+```powershell
+aws s3 sync .\media\ s3://bestbuddy-animal-media-188785237347-us-east-2/ --dryrun
+aws s3 sync .\media\ s3://bestbuddy-animal-media-188785237347-us-east-2/
+```
+
+Caso os arquivos estejam somente no disco efêmero de um pod, faça essa cópia antes de substituir o pod; o armazenamento remoto não recupera arquivos já perdidos.
 
 ---
 
