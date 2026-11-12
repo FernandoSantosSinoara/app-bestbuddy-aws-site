@@ -31,6 +31,7 @@
   const panels = [$("edit-panel-sobre"), $("edit-panel-local"), $("edit-panel-status")];
 
   const nomeInput = $("edit-nome");
+  const sexoSelect = $("edit-sexo");
   const racaInput = $("edit-raca");
   const idadeSelect = $("edit-idade");
   const descInput = $("edit-descricao");
@@ -158,7 +159,7 @@
     return {
       nome: nomeInput.value.trim(),
       tipo_animal: getRadioValue("edit-tipo"),
-      sexo: getRadioValue("edit-sexo"),
+      sexo: sexoSelect ? sexoSelect.value : getRadioValue("edit-sexo"),
       raca: racaInput.value.trim(),
       idade_aproximada: idadeSelect.value,
       descricao: descInput.value.trim(),
@@ -214,6 +215,7 @@
   function validate(values) {
     const errors = [];
     if (!values.nome) errors.push({ tab: 0, el: nomeInput, msg: "Informe o nome do pet." });
+    if (!values.sexo) errors.push({ tab: 0, el: sexoSelect, msg: "Selecione o sexo do pet." });
     if (!values.descricao) errors.push({ tab: 0, el: descInput, msg: "Escreva uma breve descrição do pet." });
     if (!values.estado) errors.push({ tab: 1, el: estadoSelect, msg: "Selecione o estado (UF)." });
     if (!values.cidade) errors.push({ tab: 1, el: cidadeInput, msg: "Informe a cidade." });
@@ -359,7 +361,11 @@
     // Aba 1
     nomeInput.value = animal.nome || "";
     setRadioValue("edit-tipo", animal.tipo_animal || "CACHORRO");
-    setRadioValue("edit-sexo", animal.sexo || "I");
+    if (sexoSelect) {
+      sexoSelect.value = animal.sexo || "";
+    } else {
+      setRadioValue("edit-sexo", animal.sexo || "I");
+    }
     racaInput.value = animal.raca || "";
     idadeSelect.value = animal.idade_aproximada || "";
     descInput.value = animal.descricao || "";
@@ -417,7 +423,7 @@
       fillForm(animal);
       try {
         await loadCidades(animal.estado);
-      } catch (_) {}
+      } catch (_) { }
       updateDirtyState();
 
       submitBtn.disabled = false;

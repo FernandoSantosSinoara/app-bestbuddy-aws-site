@@ -27,5 +27,6 @@
     "${workspaceFolder}/adocoes",
     "${workspaceFolder}/comunidade",
     "${workspaceFolder}/config"
-  ]
+  ],
+  "liveServer.settings.port": 5501
 }

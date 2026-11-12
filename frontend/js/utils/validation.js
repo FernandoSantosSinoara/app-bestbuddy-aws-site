@@ -43,7 +43,10 @@ const bbValidation = {
     if (!value || typeof value !== "string" || !value.trim()) return false;
     const digits = value.replace(/\D/g, "");
     if (digits.length !== 10 && digits.length !== 11) return false;
-    if (/^(\d)\1+$/.test(digits)) return false;
+
+    // Não permite números fictícios onde todos os dígitos do número (após o DDD) são iguais
+    const numeroSemDDD = digits.slice(2);
+    if (/^(\d)\1+$/.test(numeroSemDDD)) return false;
 
     const ddd = parseInt(digits.slice(0, 2), 10);
     const validDDDs = [

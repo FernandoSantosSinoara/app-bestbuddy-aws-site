@@ -5,11 +5,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Best Buddy | Encontre ou Ajude um Pet</title>
+  <meta name="description"
+    content="Adote cães e gatos ou ajude a encontrar pets perdidos e desaparecidos com a comunidade Best Buddy." />
   <link rel="icon" type="image/svg+xml" href="../../favicon.svg" />
   <link rel="alternate icon" type="image/x-icon" href="../../favicon.ico" />
   <link rel="apple-touch-icon" href="../../apple-touch-icon.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="stylesheet" href="../../css/tailwind.build.css" />
+  <link rel="preload" href="../../assets/fonts/inter-400-567244.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="../../assets/fonts/sora-600-4fa0aa.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="../../assets/fonts/baloo-2-700-4a324d.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="../../css/fonts.css" />
+  <link rel="stylesheet" href="../../css/tailwind.build.css?v=8" />
   <link rel="stylesheet" href="../../css/edit-modal.css" />
 </head>
 
@@ -118,7 +123,8 @@
             <!-- Filtros: Buscar por (Serviço), Estado, Cidade e Tipo de Animal -->
             <div class="flex flex-wrap items-center gap-3">
               <div>
-                <select id="filter-buscar-por" class="bb-input text-xs md:text-sm py-2 font-medium" aria-label="Buscar por">
+                <select id="filter-buscar-por" class="bb-input text-xs md:text-sm py-2 font-medium"
+                  aria-label="Buscar por">
                   <option value="">Buscar por: Todos</option>
                   <option value="ADOCAO">🐾 Buscar por: Adoção</option>
                   <option value="PERDIDO">🚨 Buscar por: Animais Perdidos</option>
@@ -316,7 +322,7 @@
           </button>
         </div>
 
-        <form id="form-adopt-pet">
+        <form id="form-adopt-pet" style="display: contents;">
           <div class="bb-modal-body bb-edit-body">
             <div id="modal-adopt-alert"></div>
 
@@ -356,9 +362,9 @@
                   <div>
                     <label class="bb-label" for="pet-sexo">Sexo <span class="bb-edit-required">*</span></label>
                     <select class="bb-input" id="pet-sexo" required>
+                      <option value="" selected disabled>Selecione...</option>
                       <option value="M">Macho</option>
                       <option value="F">Fêmea</option>
-                      <option value="I">Indeterminado</option>
                     </select>
                   </div>
                   <div>
@@ -601,12 +607,12 @@
               </div>
 
               <div class="bb-edit-field">
-                <span class="bb-label">Sexo</span>
-                <div class="bb-edit-segmented" id="edit-sexo-group">
-                  <label><input type="radio" name="edit-sexo" value="M" /><span>♂ Macho</span></label>
-                  <label><input type="radio" name="edit-sexo" value="F" /><span>♀ Fêmea</span></label>
-                  <label><input type="radio" name="edit-sexo" value="I" /><span>Não sei</span></label>
-                </div>
+                <label class="bb-label" for="edit-sexo">Sexo <span class="bb-edit-required">*</span></label>
+                <select class="bb-input" id="edit-sexo" name="edit-sexo" required>
+                  <option value="" selected disabled>Selecione...</option>
+                  <option value="M">Macho</option>
+                  <option value="F">Fêmea</option>
+                </select>
               </div>
 
               <div class="bb-modal-grid-2 bb-edit-field">
@@ -731,25 +737,25 @@
     <div id="bb-footer"></div>
   </div>
 
-  <script src="../../js/config.js"></script>
-  <script src="../../js/utils/storage.js"></script>
-  <script src="../../js/utils/validation.js"></script>
-  <script src="../../js/mocks/mock-utils.js"></script>
-  <script src="../../js/mocks/mock-data.js"></script>
-  <script src="../../js/api/client.js"></script>
-  <script src="../../js/services/ibgeService.js"></script>
-  <script src="../../js/services/animalService.js"></script>
-  <script src="../../js/services/authService.js"></script>
-  <script src="../../js/utils/header-scroll.js"></script>
-  <script src="../../js/components/Navigation.js?v=bb3"></script>
-  <script src="../../js/components/Footer.js?v=bb3"></script>
-  <script src="../../js/components/CookieBanner.js"></script>
-  <script src="../../js/components/AnimalCard.js"></script>
-  <script src="../../js/components/StateView.js"></script>
-  <script src="../../js/utils/click-limiter.js"></script>
-  <script src="../../js/utils/image-compressor.js"></script>
-  <script src="../../js/pages/animals.js?v=7"></script>
-  <script src="../../js/pages/animals-edit.js?v=3"></script>
+  <script src="../../js/config.js" defer></script>
+  <script src="../../js/utils/storage.js" defer></script>
+  <script src="../../js/utils/validation.js" defer></script>
+  <script src="../../js/mocks/mock-utils.js" defer></script>
+  <script src="../../js/mocks/mock-data.js" defer></script>
+  <script src="../../js/api/client.js" defer></script>
+  <script src="../../js/services/ibgeService.js" defer></script>
+  <script src="../../js/services/animalService.js" defer></script>
+  <script src="../../js/services/authService.js" defer></script>
+  <script src="../../js/utils/header-scroll.js" defer></script>
+  <script src="../../js/components/Navigation.js?v=bb4" defer></script>
+  <script src="../../js/components/Footer.js?v=bb3" defer></script>
+  <script src="../../js/components/CookieBanner.js" defer></script>
+  <script src="../../js/components/AnimalCard.js" defer></script>
+  <script src="../../js/components/StateView.js" defer></script>
+  <script src="../../js/utils/click-limiter.js" defer></script>
+  <script src="../../js/utils/image-compressor.js" defer></script>
+  <script src="../../js/pages/animals.js?v=7" defer></script>
+  <script src="../../js/pages/animals-edit.js?v=3" defer></script>
 </body>
 
 </html>

@@ -7,8 +7,6 @@ from PIL import Image, ImageOps
 from django.conf import settings
 from django.core.files.base import ContentFile
 
-os.environ.setdefault('KERAS_BACKEND', 'torch')
-
 logger = logging.getLogger(__name__)
 
 # Configurações do Validador de Pets
@@ -19,18 +17,56 @@ LIMIAR_NSFW_SEGURANCA = 0.60
 _yolo_model = None
 
 
+class _ONNXBox:
+    def __init__(self, cls_id, conf):
+        self.cls = [cls_id]
+        self.conf = [conf]
+
+
+class _ONNXResult:
+    names = {15: 'cat', 16: 'dog'}
+
+    def __init__(self, boxes):
+        self.boxes = boxes
+
+
+class ONNXYoloDetector:
+    """Wrapper leve sobre onnxruntime.InferenceSession compatível com a interface de retorno do YOLOv8."""
+    def __init__(self, model_path):
+        import onnxruntime as ort
+        self.session = ort.InferenceSession(model_path, providers=['CPUExecutionProvider'])
+        self.input_name = self.session.get_inputs()[0].name
+
+    def __call__(self, img_pil, verbose=False):
+        import numpy as np
+        img_rgb = img_pil if img_pil.mode == 'RGB' else img_pil.convert('RGB')
+        img_resized = ImageOps.pad(img_rgb, (640, 640), method=Image.Resampling.BILINEAR, color=(114, 114, 114))
+        arr = np.asarray(img_resized, dtype=np.float32) / 255.0
+        tensor = np.transpose(arr, (2, 0, 1))[np.newaxis, ...]
+
+        outputs = self.session.run(None, {self.input_name: tensor})[0]
+        preds = outputs[0]
+
+        boxes = []
+        for cls_id in (15, 16):  # 15 = cat, 16 = dog no dataset COCO
+            max_conf = float(np.max(preds[4 + cls_id, :]))
+            if max_conf >= CONFIANCA_MINIMA_PET:
+                boxes.append(_ONNXBox(cls_id, max_conf))
+
+        return [_ONNXResult(boxes)]
+
+
 def get_yolo_detector():
-    """Carrega o modelo YOLOv8-nano sob demanda em memória (Singleton)."""
+    """Carrega o modelo YOLOv8-nano (ONNX) sob demanda em memória (Singleton)."""
     global _yolo_model
     if _yolo_model is None:
         try:
-            from ultralytics import YOLO
             base_dir = getattr(settings, 'BASE_DIR', None)
-            caminho_local = os.path.join(str(base_dir), 'yolov8n.pt') if base_dir else 'yolov8n.pt'
-            _yolo_model = YOLO(caminho_local if os.path.exists(caminho_local) else 'yolov8n.pt')
-            logger.info("YOLOv8-nano carregado com sucesso.")
+            caminho_local = os.path.join(str(base_dir), 'yolov8n.onnx') if base_dir else 'yolov8n.onnx'
+            _yolo_model = ONNXYoloDetector(caminho_local if os.path.exists(caminho_local) else 'yolov8n.onnx')
+            logger.info("YOLOv8-nano (ONNX) carregado com sucesso.")
         except Exception as e:
-            logger.error(f"Falha ao carregar modelo YOLOv8: {e}")
+            logger.error(f"Falha ao carregar modelo YOLOv8 ONNX: {e}")
             return None
     return _yolo_model
 

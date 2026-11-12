@@ -31,28 +31,8 @@ exit /b 1
 for /f "tokens=*" %%v in ('%PYTHON_CMD% --version 2^>^&1') do set "PY_VER=%%v"
 echo [+] %PY_VER% localizado com sucesso.
 
-:: 2. VERIFICAR/CRIAR AMBIENTE VIRTUAL (VENV) OU USAR AMBIENTE PRONTO
-set "ACTIVATE_CMD="
-if exist "%~dp0venv\Scripts\activate.bat" (
-    set "ACTIVATE_CMD=call \"%~dp0venv\Scripts\activate.bat\" && "
-    call "%~dp0venv\Scripts\activate.bat"
-    echo [+] [1/5] Ambiente virtual [venv] detectado.
-    goto check_deps
-)
-if exist "%~dp0.venv\Scripts\activate.bat" (
-    set "ACTIVATE_CMD=call \"%~dp0.venv\Scripts\activate.bat\" && "
-    call "%~dp0.venv\Scripts\activate.bat"
-    echo [+] [1/5] Ambiente virtual [.venv] detectado.
-    goto check_deps
-)
-
-:: Se o Python do sistema ja possui Django + DRF + Ultralytics instalados, reutiliza direto
-"%PYTHON_CMD%" -c "import django, rest_framework, ultralytics" >nul 2>&1
-if not errorlevel 1 (
-    echo [+] [1/5] Ambiente Python global ja possui todas as dependencias prontas.
-    goto deps_ready
-)
-
+:: 2. VERIFICAR/CRIAR AMBIENTE VIRTUAL (VENV)
+if exist "%~dp0venv\Scripts\activate.bat" goto venv_exists
 echo [*] [1/5] Criando ambiente virtual isolado [venv]...
 "%PYTHON_CMD%" -m venv "%~dp0venv"
 if errorlevel 1 (
@@ -60,47 +40,22 @@ if errorlevel 1 (
     pause
     exit /b 1
 )
-set "ACTIVATE_CMD=call \"%~dp0venv\Scripts\activate.bat\" && "
-call "%~dp0venv\Scripts\activate.bat"
 echo [+] Ambiente virtual venv criado com sucesso!
+goto venv_ready
 
-:check_deps
-:: 3. VERIFICAR COMPILADOR C++ E INSTALAR DEPENDENCIAS (PIP)
-python -c "import django, rest_framework" >nul 2>&1
+:venv_exists
+echo [+] [1/5] Ambiente virtual venv detectado.
+
+:venv_ready
+call "%~dp0venv\Scripts\activate.bat"
+
+:: 3. VERIFICAR/INSTALAR DEPENDENCIAS (PIP)
+python -c "import django, onnxruntime" >nul 2>&1
 if not errorlevel 1 goto deps_ready
-
-echo [*] Verificando Microsoft Visual C++ Build Tools para pacotes nativos...
-set "HAS_CPP=0"
-where cl.exe >nul 2>&1
-if not errorlevel 1 set "HAS_CPP=1"
-if exist "%ProgramFiles(x86)%\Microsoft Visual Studio\Installer\vswhere.exe" (
-    for /f "usebackq tokens=*" %%i in (`"%ProgramFiles(x86)%\Microsoft Visual Studio\Installer\vswhere.exe" -latest -requires Microsoft.VisualStudio.Workload.VCTools -property installationPath 2^>nul`) do (
-        if not "%%i"=="" set "HAS_CPP=1"
-    )
-)
-
-if "!HAS_CPP!"=="1" (
-    echo [+] Compilador C++ ^(Visual Studio Build Tools^) detectado.
-) else (
-    echo [!] Compilador C++ nao detectado. Tentando instalar Visual C++ Build Tools via winget...
-    winget install --id Microsoft.VisualStudio.2022.BuildTools -e --accept-source-agreements --accept-package-agreements --override "--passive --wait --add Microsoft.VisualStudio.Workload.VCTools --includeRecommended" >nul 2>&1
-)
-
-echo [*] [2/5] Instalando PyTorch CPU otimizado e dependencias do requirements.txt...
-pip install --no-cache-dir --default-timeout=1000 torch torchvision --index-url https://download.pytorch.org/whl/cpu
-pip install --no-cache-dir --default-timeout=1000 -r "%~dp0requirements.txt"
+echo [*] [2/5] Instalando dependencias do requirements.txt...
+pip install -r "%~dp0requirements.txt"
 if errorlevel 1 (
-    echo [!] Aviso: Falha ao compilar mysqlclient nativo. Instalando dependencias para modo SQLite + IA...
-    for /f "usebackq tokens=*" %%p in ("%~dp0requirements.txt") do (
-        echo %%p | findstr /I /B "mysqlclient gunicorn" >nul
-        if errorlevel 1 (
-            pip install --no-cache-dir --default-timeout=1000 "%%p"
-        )
-    )
-)
-python -c "import django, rest_framework" >nul 2>&1
-if errorlevel 1 (
-    echo [ERRO] Falha critica ao instalar dependencias basicas do Django.
+    echo [ERRO] Falha ao instalar dependencias do requirements.txt.
     pause
     exit /b 1
 )
@@ -108,7 +63,7 @@ echo [+] Dependencias instaladas com sucesso!
 goto deps_done
 
 :deps_ready
-echo [+] [2/5] Dependencias Django, DRF e IA prontas.
+echo [+] [2/5] Dependencias Django, DRF e ONNX Runtime prontas.
 
 :deps_done
 
@@ -169,10 +124,10 @@ powershell -NoProfile -Command "Get-NetTCPConnection -LocalPort 8000, 5500 -Erro
 echo [*] [5/5] Inicializando os servicos...
 
 :: Backend API na porta 8000
-start "Best Buddy - Backend API (Porta 8000)" cmd /k "title Best Buddy - Backend API (Porta 8000) && cd /d %~dp0 && !ACTIVATE_CMD!python manage.py runserver 127.0.0.1:8000"
+start "Best Buddy - Backend API (Porta 8000)" cmd /k "title Best Buddy - Backend API (Porta 8000) && cd /d %~dp0 && call venv\Scripts\activate.bat && python manage.py runserver 127.0.0.1:8000"
 
 :: Frontend na porta 5500 (com No-Cache headers ativados)
-start "Best Buddy - Frontend (Porta 5500)" cmd /k "title Best Buddy - Frontend (Porta 5500) && cd /d %~dp0\frontend && !ACTIVATE_CMD!python server.py 5500"
+start "Best Buddy - Frontend (Porta 5500)" cmd /k "title Best Buddy - Frontend (Porta 5500) && cd /d %~dp0\frontend && call ..\venv\Scripts\activate.bat && python server.py 5500"
 
 :: 9. ABRIR O NAVEGADOR
 ping 127.0.0.1 -n 4 >nul

@@ -143,6 +143,13 @@ frontend/
 ├── css/
 │   ├── src/input.css          # Fonte Tailwind com @apply e classes bb-*
 │   └── tailwind.build.css     # CSS gerado e minificado carregado pelas páginas
+└── .github/workflows/deploy.yml # Pipeline de CI/CD para o GitHub Pages
 ```
 
-O workflow `.github/workflows/deploy.yml` publica o frontend no ECR e o implanta no EKS junto com a API. Após o rollout na branch `main`, acesse a raiz da URL do ALB (`http://<alb-dns-name>/`). Em produção, o Nginx encaminha `/api/` ao Service `pessoas-service`; localmente, `docker compose up --build` continua usando a configuração Nginx de desenvolvimento.
+---
+
+## 🌐 Deploy no GitHub Pages
+
+O projeto publica automaticamente o site estático a cada `push` na branch `main` através do GitHub Actions configurado em `.github/workflows/deploy.yml`.
+
+Como o CSS compilado já é commitado no repositório, o deploy é 100% estático e instantâneo.

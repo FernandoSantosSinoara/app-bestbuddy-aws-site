@@ -131,8 +131,9 @@ async function bbLoadDetail() {
     if (detailFinishBtn) {
       detailFinishBtn.addEventListener("click", async () => {
         const id = detailFinishBtn.dataset.id;
-        const isPerdido = targetStatus === "ENCONTRADO";
-        const confirmMsg = isPerdido
+        const targetStatus = detailFinishBtn.dataset.status || (isPerdido ? "ENCONTRADO" : "ADOTADO");
+        const isPetPerdido = targetStatus === "ENCONTRADO";
+        const confirmMsg = isPetPerdido
           ? "Deseja marcar este pet como ENCONTRADO? O anúncio será dado como concluído."
           : "Deseja marcar este pet como ADOTADO? Ele sairá da lista pública de animais disponíveis e somará no contador de adotados.";
         if (!confirm(confirmMsg)) return;

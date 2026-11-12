@@ -103,7 +103,7 @@ class Animal(models.Model):
         verbose_name="Tipo de Animal"
     )
 
-    nome = models.CharField(max_length=50, null=True, blank=True, verbose_name="Nome do Pet")
+    nome = models.CharField(max_length=50, verbose_name="Nome do Pet")
     estado = models.CharField(
         max_length=2, 
         choices=Estado.choices,
