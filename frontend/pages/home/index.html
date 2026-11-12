@@ -5,22 +5,315 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Best Buddy | Adoção e Proteção Animal</title>
+  <meta name="description"
+    content="Plataforma Best Buddy para adoção responsável de cães e gatos e apoio para localização de animais perdidos e desaparecidos." />
   <link rel="icon" type="image/svg+xml" href="../../favicon.svg" />
   <link rel="alternate icon" type="image/x-icon" href="../../favicon.ico" />
   <link rel="apple-touch-icon" href="../../apple-touch-icon.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="stylesheet" href="../../css/tailwind.build.css?v=6" />
-  <link rel="stylesheet" href="../../css/logo-loop.css" />
+  <link rel="preload" as="image" href="../../assets/images/cachorroDeLado-mobile.webp" type="image/webp"
+    media="(max-width: 640px)" fetchpriority="high" />
+  <link rel="preload" as="image" href="../../assets/images/cachorroDeLado.webp" type="image/webp"
+    media="(min-width: 641px)" fetchpriority="high" />
+  <link rel="preload" href="../../assets/fonts/inter-400-567244.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="../../assets/fonts/sora-600-4fa0aa.woff2" as="font" type="font/woff2" crossorigin />
+  <style>
+    @font-face {
+      font-family: 'Baloo 2';
+      font-style: normal;
+      font-weight: 700;
+      font-display: swap;
+      src: url(../../assets/fonts/baloo-2-700-0d1ee7.woff2) format('woff2');
+      unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+
+    @font-face {
+      font-family: 'Baloo 2';
+      font-style: normal;
+      font-weight: 700;
+      font-display: swap;
+      src: url(../../assets/fonts/baloo-2-700-4a324d.woff2) format('woff2');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+
+    @font-face {
+      font-family: 'Baloo 2';
+      font-style: normal;
+      font-weight: 800;
+      font-display: swap;
+      src: url(../../assets/fonts/baloo-2-700-0d1ee7.woff2) format('woff2');
+      unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+
+    @font-face {
+      font-family: 'Baloo 2';
+      font-style: normal;
+      font-weight: 800;
+      font-display: swap;
+      src: url(../../assets/fonts/baloo-2-700-4a324d.woff2) format('woff2');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+
+    @font-face {
+      font-family: 'Inter';
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src: url(../../assets/fonts/inter-400-395290.woff2) format('woff2');
+      unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+
+    @font-face {
+      font-family: 'Inter';
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src: url(../../assets/fonts/inter-400-567244.woff2) format('woff2');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+
+    @font-face {
+      font-family: 'Inter';
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url(../../assets/fonts/inter-400-395290.woff2) format('woff2');
+      unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+
+    @font-face {
+      font-family: 'Inter';
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url(../../assets/fonts/inter-400-567244.woff2) format('woff2');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+
+    @font-face {
+      font-family: 'Inter';
+      font-style: normal;
+      font-weight: 600;
+      font-display: swap;
+      src: url(../../assets/fonts/inter-400-395290.woff2) format('woff2');
+      unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+
+    @font-face {
+      font-family: 'Inter';
+      font-style: normal;
+      font-weight: 600;
+      font-display: swap;
+      src: url(../../assets/fonts/inter-400-567244.woff2) format('woff2');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+
+    @font-face {
+      font-family: 'Inter';
+      font-style: normal;
+      font-weight: 700;
+      font-display: swap;
+      src: url(../../assets/fonts/inter-400-395290.woff2) format('woff2');
+      unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+
+    @font-face {
+      font-family: 'Inter';
+      font-style: normal;
+      font-weight: 700;
+      font-display: swap;
+      src: url(../../assets/fonts/inter-400-567244.woff2) format('woff2');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+
+    @font-face {
+      font-family: 'Sora';
+      font-style: normal;
+      font-weight: 600;
+      font-display: swap;
+      src: url(../../assets/fonts/sora-600-f9e5e3.woff2) format('woff2');
+      unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+
+    @font-face {
+      font-family: 'Sora';
+      font-style: normal;
+      font-weight: 600;
+      font-display: swap;
+      src: url(../../assets/fonts/sora-600-4fa0aa.woff2) format('woff2');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+
+    @font-face {
+      font-family: 'Sora';
+      font-style: normal;
+      font-weight: 700;
+      font-display: swap;
+      src: url(../../assets/fonts/sora-600-f9e5e3.woff2) format('woff2');
+      unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+
+    @font-face {
+      font-family: 'Sora';
+      font-style: normal;
+      font-weight: 700;
+      font-display: swap;
+      src: url(../../assets/fonts/sora-600-4fa0aa.woff2) format('woff2');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+
+    @font-face {
+      font-family: 'Sora';
+      font-style: normal;
+      font-weight: 800;
+      font-display: swap;
+      src: url(../../assets/fonts/sora-600-f9e5e3.woff2) format('woff2');
+      unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+
+    @font-face {
+      font-family: 'Sora';
+      font-style: normal;
+      font-weight: 800;
+      font-display: swap;
+      src: url(../../assets/fonts/sora-600-4fa0aa.woff2) format('woff2');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+  </style>
+  <link rel="stylesheet" href="../../css/tailwind.build.css?v=8" />
+  <link rel="stylesheet" href="../../css/logo-loop.css" media="print" onload="this.media='all'" />
+  <noscript>
+    <link rel="stylesheet" href="../../css/logo-loop.css" />
+  </noscript>
 </head>
 
 <body>
   <div class="bb-shell">
-    <div id="bb-nav"></div>
+    <div id="bb-nav">
+      <div class="bb-topbar"></div>
+      <header class="bb-header">
+        <div class="bb-container bb-header__bar bb-header__bar--nav">
+          <a href="/pages/home/index.html" class="bb-logo shrink-0">
+            <span class="bb-logo__text bb-logo__text--dark">Best</span><span
+              class="bb-logo__text bb-logo__text--accent">Buddy</span>
+          </a>
+          <nav aria-label="Navegação principal" class="bb-header__nav-wrap">
+            <ul class="bb-nav__links">
+              <li>
+                <a class="bb-nav__link" href="/pages/home/index.html" aria-current="page">
+                  <span>Home</span>
+                </a>
+              </li>
+              <li>
+                <a class="bb-nav__link" href="/pages/animals/index.html">
+                  <span>Animais</span>
+                </a>
+              </li>
+              <li>
+                <a class="bb-nav__link" href="/pages/about/index.html">
+                  <span>Sobre Nós</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+          <div class="bb-nav__user flex items-center gap-1.5 sm:gap-2">
+            <a href="/pages/auth/login.html"
+              class="bb-btn bb-btn--secondary !px-2.5 sm:!px-4 !py-1 sm:!py-1.5 !text-xs whitespace-nowrap">Entrar</a>
+            <a href="/pages/auth/register.html"
+              class="bb-btn bb-btn--primary !px-2.5 sm:!px-4 !py-1 sm:!py-1.5 !text-xs whitespace-nowrap">Cadastre-se</a>
+          </div>
+        </div>
+      </header>
+      <nav class="bb-hotbar-mobile" aria-label="Navegação inferior mobile">
+        <a href="/pages/home/index.html" class="bb-hotbar-item is-active">
+          <span class="bb-hotbar-icon">🏠</span>
+          <span class="bb-hotbar-label">Home</span>
+        </a>
+        <a href="/pages/animals/index.html" class="bb-hotbar-item">
+          <span class="bb-hotbar-icon">🐾</span>
+          <span class="bb-hotbar-label">Animais</span>
+        </a>
+        <a href="/pages/about/index.html" class="bb-hotbar-item">
+          <span class="bb-hotbar-icon">💙</span>
+          <span class="bb-hotbar-label">Sobre</span>
+        </a>
+        <a href="/pages/auth/login.html" class="bb-hotbar-item">
+          <span class="bb-hotbar-icon">🔑</span>
+          <span class="bb-hotbar-label">Entrar</span>
+        </a>
+      </nav>
+    </div>
 
     <main class="bb-main">
       <div class="bb-container">
         <!-- Carrossel de Destaques (Hero) -->
-        <div id="bb-hero"></div>
+        <div id="bb-hero">
+          <div class="bb-hero" id="bb-hero-carousel">
+            <div class="bb-hero__track">
+              <div class="bb-hero__slide is-active" data-index="0">
+                <picture>
+                  <source media="(max-width: 640px)" srcset="../../assets/images/cachorroDeLado-mobile.webp"
+                    type="image/webp" />
+                  <source srcset="../../assets/images/cachorroDeLado.webp" type="image/webp" />
+                  <img class="bb-hero__img" src="../../assets/images/cachorroDeLado.jpg"
+                    alt="Cachorro de perfil - Pets Desaparecidos Best Buddy" width="1200" height="800"
+                    fetchpriority="high" decoding="sync" />
+                </picture>
+                <div class="bb-hero__overlay" aria-hidden="true"></div>
+                <div class="bb-hero__content">
+                  <h2 class="bb-hero__title">Ajude a reencontrar pets perdidos!</h2>
+                  <p class="bb-hero__desc">Encontrou um animalzinho ou perdeu seu companheiro? Conecte-se diretamente
+                    com a família.</p>
+                  <a class="bb-btn bb-btn--primary" href="/pages/animals/index.html#bb-lost-section">Ver pets
+                    perdidos</a>
+                </div>
+              </div>
+              <div class="bb-hero__slide" data-index="1">
+                <picture>
+                  <source media="(max-width: 640px)" srcset="../../assets/images/cachorroComABocaAberta-mobile.webp"
+                    type="image/webp" />
+                  <source srcset="../../assets/images/cachorroComABocaAberta.webp" type="image/webp" />
+                  <img class="bb-hero__img" src="../../assets/images/cachorroComABocaAberta.jpg"
+                    alt="Cachorro feliz com a boca aberta - Animais disponíveis" width="1200" height="800"
+                    loading="lazy" decoding="async" />
+                </picture>
+                <div class="bb-hero__overlay" aria-hidden="true"></div>
+                <div class="bb-hero__content">
+                  <h2 class="bb-hero__title">Conheça nossos animais</h2>
+                  <p class="bb-hero__desc">Veja os bichinhos que estão esperando por um novo lar cheio de carinho.</p>
+                  <a class="bb-btn bb-btn--primary" href="/pages/animals/index.html">Ver animais</a>
+                </div>
+              </div>
+              <div class="bb-hero__slide" data-index="2">
+                <picture>
+                  <source media="(max-width: 640px)" srcset="../../assets/images/cachorroCoberto-mobile.webp"
+                    type="image/webp" />
+                  <source srcset="../../assets/images/cachorroCoberto.webp" type="image/webp" />
+                  <img class="bb-hero__img" src="../../assets/images/cachorroCoberto.jpg"
+                    alt="Cachorro enrolado em cobertor - Adote um animal" width="1200" height="800" loading="lazy"
+                    decoding="async" />
+                </picture>
+                <div class="bb-hero__overlay" aria-hidden="true"></div>
+                <div class="bb-hero__content">
+                  <h2 class="bb-hero__title">Adote animais aqui!</h2>
+                  <p class="bb-hero__desc">Dê uma segunda chance a quem mais precisa. Conheça nossos pets disponíveis
+                    para adoção.</p>
+                  <a class="bb-btn bb-btn--primary" href="/pages/animals/index.html">Quero adotar</a>
+                </div>
+              </div>
+            </div>
+
+            <button class="bb-hero__arrow bb-hero__arrow--prev" type="button"
+              aria-label="Slide anterior">&lsaquo;</button>
+            <button class="bb-hero__arrow bb-hero__arrow--next" type="button"
+              aria-label="Próximo slide">&rsaquo;</button>
+
+            <div class="bb-hero__dots">
+              <button class="bb-hero__dot is-active" type="button" data-index="0" aria-label="Ir para slide 1"></button>
+              <button class="bb-hero__dot" type="button" data-index="1" aria-label="Ir para slide 2"></button>
+              <button class="bb-hero__dot" type="button" data-index="2" aria-label="Ir para slide 3"></button>
+            </div>
+          </div>
+        </div>
 
         <!-- Faixa Cilíndrica com Animação em Loop da Logo Best Buddy -->
         <section class="my-8 md:my-10 w-full" aria-label="Espaço da marca">
@@ -103,7 +396,43 @@
           </div>
 
           <!-- Grid de Cards de Pets -->
-          <div id="bb-home-pets"></div>
+          <div id="bb-home-pets">
+            <div class="bb-card--tight bg-surface-800 border border-border rounded-xl overflow-hidden">
+              <div class="bb-skeleton aspect-[4/3] rounded-none"></div>
+              <div class="p-4 flex flex-col gap-2">
+                <div class="bb-skeleton h-4 w-3/4"></div>
+                <div class="bb-skeleton h-3 w-1/2"></div>
+              </div>
+            </div>
+            <div class="bb-card--tight bg-surface-800 border border-border rounded-xl overflow-hidden">
+              <div class="bb-skeleton aspect-[4/3] rounded-none"></div>
+              <div class="p-4 flex flex-col gap-2">
+                <div class="bb-skeleton h-4 w-3/4"></div>
+                <div class="bb-skeleton h-3 w-1/2"></div>
+              </div>
+            </div>
+            <div class="bb-card--tight bg-surface-800 border border-border rounded-xl overflow-hidden">
+              <div class="bb-skeleton aspect-[4/3] rounded-none"></div>
+              <div class="p-4 flex flex-col gap-2">
+                <div class="bb-skeleton h-4 w-3/4"></div>
+                <div class="bb-skeleton h-3 w-1/2"></div>
+              </div>
+            </div>
+            <div class="bb-card--tight bg-surface-800 border border-border rounded-xl overflow-hidden">
+              <div class="bb-skeleton aspect-[4/3] rounded-none"></div>
+              <div class="p-4 flex flex-col gap-2">
+                <div class="bb-skeleton h-4 w-3/4"></div>
+                <div class="bb-skeleton h-3 w-1/2"></div>
+              </div>
+            </div>
+            <div class="bb-card--tight bg-surface-800 border border-border rounded-xl overflow-hidden">
+              <div class="bb-skeleton aspect-[4/3] rounded-none"></div>
+              <div class="p-4 flex flex-col gap-2">
+                <div class="bb-skeleton h-4 w-3/4"></div>
+                <div class="bb-skeleton h-3 w-1/2"></div>
+              </div>
+            </div>
+          </div>
         </section>
 
         <!-- Seção: Como funciona a adoção? -->
@@ -169,25 +498,51 @@
       </div>
     </main>
 
-    <div id="bb-footer"></div>
+    <div id="bb-footer">
+      <footer class="bb-footer"
+        style="background-color: #0c2340 !important; color: #e2e8f0; width: 100%; padding: 1.75rem 0; margin-top: 4rem; border-top: 1px solid #1a3a60;">
+        <div class="bb-container"
+          style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem;">
+          <div
+            style="display: flex; align-items: center; gap: 0.5rem; font-family: 'Baloo 2', 'Sora', sans-serif; font-size: 1.15rem; font-weight: 700; color: #ffffff;">
+            <span>Best <span style="color: #6fb4ee;">Buddy</span></span>
+          </div>
+
+          <div style="text-align: center; color: #94a3b8; font-size: 0.8rem;">
+            &copy; 2026 Best Buddy | Adoção responsável com amor.
+          </div>
+
+          <div style="display: flex; align-items: center; gap: 1.5rem; font-size: 0.8rem; flex-wrap: wrap;">
+            <a href="/pages/about/index.html" id="bb-footer-link-about"
+              style="color: #cbd5e1; text-decoration: none; transition: color 0.2s;">Sobre nós</a>
+            <a href="/pages/animals/index.html"
+              style="color: #cbd5e1; text-decoration: none; transition: color 0.2s;">Contato</a>
+            <a href="/pages/legal/terms.html"
+              style="color: #cbd5e1; text-decoration: none; transition: color 0.2s;">Termos de Uso</a>
+            <a href="/pages/legal/privacy.html"
+              style="color: #cbd5e1; text-decoration: none; transition: color 0.2s;">Privacidade & Cookies</a>
+          </div>
+        </div>
+      </footer>
+    </div>
   </div>
 
-  <script src="../../js/config.js"></script>
-  <script src="../../js/utils/storage.js"></script>
-  <script src="../../js/mocks/mock-utils.js"></script>
-  <script src="../../js/mocks/mock-data.js"></script>
-  <script src="../../js/api/client.js"></script>
-  <script src="../../js/services/animalService.js"></script>
-  <script src="../../js/services/authService.js"></script>
-  <script src="../../js/utils/header-scroll.js"></script>
-  <script src="../../js/components/Navigation.js?v=bb3"></script>
-  <script src="../../js/components/Footer.js?v=bb3"></script>
-  <script src="../../js/components/CookieBanner.js"></script>
-  <script src="../../js/components/AnimalCard.js"></script>
-  <script src="../../js/components/StateView.js"></script>
-  <script src="../../js/components/HeroCarousel.js"></script>
-  <script src="../../js/utils/click-limiter.js"></script>
-  <script src="../../js/pages/home.js"></script>
+  <script src="../../js/config.js" defer></script>
+  <script src="../../js/utils/storage.js" defer></script>
+  <script src="../../js/mocks/mock-utils.js" defer></script>
+  <script src="../../js/mocks/mock-data.js" defer></script>
+  <script src="../../js/api/client.js" defer></script>
+  <script src="../../js/services/animalService.js" defer></script>
+  <script src="../../js/services/authService.js" defer></script>
+  <script src="../../js/utils/header-scroll.js" defer></script>
+  <script src="../../js/components/Navigation.js?v=bb4" defer></script>
+  <script src="../../js/components/Footer.js?v=bb3" defer></script>
+  <script src="../../js/components/CookieBanner.js" defer></script>
+  <script src="../../js/components/AnimalCard.js" defer></script>
+  <script src="../../js/components/StateView.js" defer></script>
+  <script src="../../js/components/HeroCarousel.js" defer></script>
+  <script src="../../js/utils/click-limiter.js" defer></script>
+  <script src="../../js/pages/home.js" defer></script>
 </body>
 
 </html>

@@ -9,6 +9,8 @@ echo.
 
 echo [*] Procurando processos nas portas 8000 (Backend) e 5500 (Frontend)...
 powershell -NoProfile -Command "Get-NetTCPConnection -LocalPort 8000, 5500 -ErrorAction SilentlyContinue | Select-Object -ExpandProperty OwningProcess -Unique | ForEach-Object { Stop-Process -Id $_ -Force -ErrorAction SilentlyContinue }"
+taskkill /FI "WINDOWTITLE eq Best Buddy - Backend API*" /T /F >nul 2>&1
+taskkill /FI "WINDOWTITLE eq Best Buddy - Frontend*" /T /F >nul 2>&1
 
 echo.
 echo [+] Todos os servicos foram finalizados com sucesso!

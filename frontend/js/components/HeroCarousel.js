@@ -5,7 +5,9 @@
 function bbRenderHeroCarousel(targetSelector) {
   const slides = [
     {
-      img: "../../assets/images/cachorroDeLado.jpg",
+      img: "../../assets/images/cachorroDeLado.webp",
+      mobileImg: "../../assets/images/cachorroDeLado-mobile.webp",
+      fallbackImg: "../../assets/images/cachorroDeLado.jpg",
       alt: "Cachorro de perfil - Pets Desaparecidos Best Buddy",
       title: "Ajude a reencontrar pets perdidos!",
       desc: "Encontrou um animalzinho ou perdeu seu companheiro? Conecte-se diretamente com a família.",
@@ -13,7 +15,9 @@ function bbRenderHeroCarousel(targetSelector) {
       href: "/pages/animals/index.html#bb-lost-section",
     },
     {
-      img: "../../assets/images/cachorroComABocaAberta.jpg",
+      img: "../../assets/images/cachorroComABocaAberta.webp",
+      mobileImg: "../../assets/images/cachorroComABocaAberta-mobile.webp",
+      fallbackImg: "../../assets/images/cachorroComABocaAberta.jpg",
       alt: "Cachorro feliz com a boca aberta - Animais disponíveis",
       title: "Conheça nossos animais",
       desc: "Veja os bichinhos que estão esperando por um novo lar cheio de carinho.",
@@ -21,7 +25,9 @@ function bbRenderHeroCarousel(targetSelector) {
       href: "/pages/animals/index.html",
     },
     {
-      img: "../../assets/images/cachorroCoberto.jpg",
+      img: "../../assets/images/cachorroCoberto.webp",
+      mobileImg: "../../assets/images/cachorroCoberto-mobile.webp",
+      fallbackImg: "../../assets/images/cachorroCoberto.jpg",
       alt: "Cachorro enrolado em cobertor - Adote um animal",
       title: "Adote animais aqui!",
       desc: "Dê uma segunda chance a quem mais precisa. Conheça nossos pets disponíveis para adoção.",
@@ -33,14 +39,20 @@ function bbRenderHeroCarousel(targetSelector) {
   const el = document.querySelector(targetSelector);
   if (!el) return;
 
-  el.innerHTML = `
+  let root = el.querySelector("#bb-hero-carousel");
+  if (!root) {
+    el.innerHTML = `
     <div class="bb-hero" id="bb-hero-carousel">
       <div class="bb-hero__track">
         ${slides
-      .map(
-        (slide, i) => `
+        .map(
+          (slide, i) => `
           <div class="bb-hero__slide${i === 0 ? " is-active" : ""}" data-index="${i}">
-            <img class="bb-hero__img" src="${slide.img}" alt="${slide.alt}" />
+            <picture>
+              <source media="(max-width: 640px)" srcset="${slide.mobileImg || slide.img}" type="image/webp" />
+              <source srcset="${slide.img}" type="image/webp" />
+              <img class="bb-hero__img" src="${slide.fallbackImg || slide.img}" alt="${slide.alt}" width="1200" height="800" ${i === 0 ? 'fetchpriority="high" decoding="sync"' : 'loading="lazy" decoding="async"'} />
+            </picture>
             <div class="bb-hero__overlay" aria-hidden="true"></div>
             <div class="bb-hero__content">
               <h2 class="bb-hero__title">${slide.title}</h2>
@@ -48,8 +60,8 @@ function bbRenderHeroCarousel(targetSelector) {
               <a class="bb-btn bb-btn--primary" href="${slide.href}">${slide.cta}</a>
             </div>
           </div>`
-      )
-      .join("")}
+        )
+        .join("")}
       </div>
 
       <button class="bb-hero__arrow bb-hero__arrow--prev" type="button" aria-label="Slide anterior">&lsaquo;</button>
@@ -57,15 +69,15 @@ function bbRenderHeroCarousel(targetSelector) {
 
       <div class="bb-hero__dots">
         ${slides
-      .map(
-        (_, i) => `<button class="bb-hero__dot${i === 0 ? " is-active" : ""}" type="button" data-index="${i}" aria-label="Ir para slide ${i + 1}"></button>`
-      )
-      .join("")}
+        .map(
+          (_, i) => `<button class="bb-hero__dot${i === 0 ? " is-active" : ""}" type="button" data-index="${i}" aria-label="Ir para slide ${i + 1}"></button>`
+        )
+        .join("")}
       </div>
     </div>
   `;
-
-  const root = document.getElementById("bb-hero-carousel");
+    root = document.getElementById("bb-hero-carousel");
+  }
   const slideEls = root.querySelectorAll(".bb-hero__slide");
   const dotEls = root.querySelectorAll(".bb-hero__dot");
   let current = 0;

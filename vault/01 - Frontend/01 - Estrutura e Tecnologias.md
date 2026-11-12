@@ -5,7 +5,7 @@ tags: #frontend #architecture #tailwind #vanillajs
 
 O frontend do Best Buddy (`best-buddy-frontend-tailwind/frontend`) foi desenvolvido com foco em:
 1. **Simplicidade de Execução**: Não depende de Node.js, Webpack, Vite ou build complexo para ser servido. Arquivos HTML, JS e CSS estáticos prontos para uso.
-2. **Entrega Simples**: Arquivos HTML, JS e CSS estáticos podem ser servidos pelo Nginx no Docker Compose. O CSS gerado (`css/tailwind.build.css`) é versionado.
+2. **Deploy Sem Fricção**: Publicado diretamente no GitHub Pages via `.github/workflows/deploy.yml`. O CSS gerado (`css/tailwind.build.css`) é versionado.
 3. **Desacoplamento Completo**: Implementação com padrão **Service Layer + Mock Layer**. O frontend não quebra se o backend estiver fora do ar.
 
 ---
@@ -18,6 +18,9 @@ frontend/
 ├── package.json                   # Scripts de compilação do Tailwind CLI
 ├── tailwind.config.js             # Configuração de design tokens (cores, fontes, animações)
 ├── README.md                      # Instruções de execução local
+├── .github/
+│   └── workflows/
+│       └── deploy.yml             # Workflow de deploy automático no GitHub Pages
 ├── assets/                        # Imagens estáticas e placeholders
 ├── css/
 │   ├── src/

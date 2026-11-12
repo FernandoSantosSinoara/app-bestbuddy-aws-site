@@ -4,7 +4,8 @@ function bbRenderFooter(targetSelector) {
 
   const aboutPath = window.location.protocol === "file:" ? "../about/index.html" : "/pages/about/index.html";
 
-  el.innerHTML = `
+  if (!el.querySelector(".bb-footer")) {
+    el.innerHTML = `
     <footer class="bb-footer" style="background-color: #0c2340 !important; color: #e2e8f0; width: 100%; padding: 1.75rem 0; margin-top: 4rem; border-top: 1px solid #1a3a60;">
       <div class="bb-container" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem;">
         <div style="display: flex; align-items: center; gap: 0.5rem; font-family: 'Baloo 2', 'Sora', sans-serif; font-size: 1.15rem; font-weight: 700; color: #ffffff;">
@@ -24,6 +25,7 @@ function bbRenderFooter(targetSelector) {
       </div>
     </footer>
   `;
+  }
 
   if (typeof bbInitCookieBanner === "function") {
     bbInitCookieBanner();

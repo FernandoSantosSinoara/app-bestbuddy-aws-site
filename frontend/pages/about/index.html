@@ -1,42 +1,50 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Best Buddy — Sobre Nós</title>
+  <meta name="description"
+    content="Conheça a história do Best Buddy: de um Projeto Integrador no Senac a uma plataforma de adoção responsável e apoio aos animais." />
   <link rel="icon" type="image/svg+xml" href="../../favicon.svg" />
   <link rel="alternate icon" type="image/x-icon" href="../../favicon.ico" />
   <link rel="apple-touch-icon" href="../../apple-touch-icon.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Inter:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../../css/tailwind.build.css" />
-  <link rel="stylesheet" href="../../css/logo-loop.css" />
+  <link rel="preload" href="../../assets/fonts/inter-400-567244.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="../../assets/fonts/sora-600-4fa0aa.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="../../assets/fonts/baloo-2-700-4a324d.woff2" as="font" type="font/woff2" crossorigin />
 
   <style>
-    /* Estilos complementares refinados para a página Sobre Nós */
+    @font-face{font-family:'Baloo 2';font-style:normal;font-weight:700;font-display:swap;src:url(../../assets/fonts/baloo-2-700-0d1ee7.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF;}
+    @font-face{font-family:'Baloo 2';font-style:normal;font-weight:700;font-display:swap;src:url(../../assets/fonts/baloo-2-700-4a324d.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+    @font-face{font-family:'Baloo 2';font-style:normal;font-weight:800;font-display:swap;src:url(../../assets/fonts/baloo-2-700-4a324d.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+    @font-face{font-family:'Inter';font-style:normal;font-weight:400;font-display:swap;src:url(../../assets/fonts/inter-400-567244.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+    @font-face{font-family:'Inter';font-style:normal;font-weight:500;font-display:swap;src:url(../../assets/fonts/inter-400-567244.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+    @font-face{font-family:'Inter';font-style:normal;font-weight:600;font-display:swap;src:url(../../assets/fonts/inter-400-567244.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+    @font-face{font-family:'Inter';font-style:normal;font-weight:700;font-display:swap;src:url(../../assets/fonts/inter-400-567244.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+    @font-face{font-family:'Sora';font-style:normal;font-weight:600;font-display:swap;src:url(../../assets/fonts/sora-600-4fa0aa.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+    @font-face{font-family:'Sora';font-style:normal;font-weight:700;font-display:swap;src:url(../../assets/fonts/sora-600-4fa0aa.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+    @font-face{font-family:'Sora';font-style:normal;font-weight:800;font-display:swap;src:url(../../assets/fonts/sora-600-4fa0aa.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+  </style>
+
+  <link rel="stylesheet" href="../../css/tailwind.build.css?v=8" />
+
+  <style>
+    /* Estilos dedicados e refinados para a página Sobre Nós */
     .bb-about-hero {
-      background: linear-gradient(135deg, rgba(28, 109, 196, 0.08) 0%, rgba(15, 58, 102, 0.03) 100%), #ffffff;
-      border: 1px solid rgba(183, 220, 251, 0.6);
+      background: linear-gradient(135deg, rgba(239, 246, 255, 0.95) 0%, rgba(255, 255, 255, 1) 50%, rgba(240, 249, 255, 0.9) 100%);
+      border: 1px solid #dbeafe;
       border-radius: 1.5rem;
       position: relative;
       overflow: hidden;
+      box-shadow: 0 10px 30px -10px rgba(30, 58, 138, 0.08);
     }
-    .bb-about-hero::after {
-      content: "";
-      position: absolute;
-      top: -50px;
-      right: -50px;
-      width: 260px;
-      height: 260px;
-      background: radial-gradient(circle, rgba(111, 180, 238, 0.22) 0%, rgba(255, 255, 255, 0) 70%);
-      pointer-events: none;
-    }
+
     .bb-badge-senac {
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      padding: 0.35rem 0.85rem;
+      padding: 0.4rem 0.95rem;
       border-radius: 9999px;
       background: #eff6ff;
       border: 1px solid #bfdbfe;
@@ -45,16 +53,155 @@
       font-weight: 700;
       letter-spacing: 0.02em;
     }
-    .bb-team-card {
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+
+    .bb-hero-img-card {
       position: relative;
+      border-radius: 1.25rem;
+      overflow: hidden;
+      box-shadow: 0 16px 36px rgba(20, 40, 70, 0.14);
+      border: 4px solid #ffffff;
+      background-color: #f1f5f9;
+    }
+
+    .bb-hero-floating-pill {
+      position: absolute;
+      bottom: 1rem;
+      left: 1rem;
+      right: 1rem;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      border-radius: 0.75rem;
+      padding: 0.65rem 1rem;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #0f172a;
+    }
+
+    /* Grid de estatísticas rápidas */
+    .bb-stat-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 1rem;
+      padding: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      box-shadow: 0 2px 10px rgba(20, 40, 70, 0.04);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+    .bb-stat-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(20, 40, 70, 0.08);
+      border-color: #bfdbfe;
+    }
+
+    .bb-stat-icon-wrap {
+      width: 3rem;
+      height: 3rem;
+      border-radius: 0.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.35rem;
+      flex-shrink: 0;
+    }
+
+    /* Linha do tempo editorial da história */
+    .bb-story-timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      position: relative;
+    }
+
+    .bb-story-step {
+      display: flex;
+      gap: 1.25rem;
+      align-items: flex-start;
+    }
+
+    .bb-story-step__marker {
+      width: 2.25rem;
+      height: 2.25rem;
+      border-radius: 9999px;
+      background: #2f80ed;
+      color: #ffffff;
+      font-size: 0.85rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 4px 12px rgba(47, 128, 237, 0.35);
+      margin-top: 0.15rem;
+    }
+
+    .bb-quote-banner {
+      background: linear-gradient(135deg, #f0fdf4 0%, #eff6ff 100%);
+      border-left: 4px solid #2f80ed;
+      border-radius: 1rem;
+      padding: 1.25rem 1.5rem;
+      margin: 1.5rem 0;
+      position: relative;
+    }
+
+    /* Cards de Pilares (Missão, Visão, Valores) */
+    .bb-pilar-card {
+      background: #ffffff;
+      border-radius: 1.25rem;
+      border: 1px solid #e2e8f0;
+      padding: 1.75rem;
+      box-shadow: 0 4px 18px rgba(30, 60, 110, 0.05);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    }
+    .bb-pilar-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+    }
+    .bb-pilar-card--blue::before { background: #2f80ed; }
+    .bb-pilar-card--emerald::before { background: #10b981; }
+    .bb-pilar-card--amber::before { background: #f59e0b; }
+
+    .bb-pilar-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 28px rgba(30, 60, 110, 0.1);
+      border-color: #cbd5e1;
+    }
+
+    /* Cards da Equipe */
+    .bb-team-card {
+      background: #ffffff;
+      border-radius: 1.25rem;
+      border: 1px solid #edf2f7;
+      padding: 1.35rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      box-shadow: 0 4px 16px rgba(30, 60, 110, 0.05);
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, border-color 0.25s ease;
     }
     .bb-team-card:hover {
       transform: translateY(-4px);
-      box-shadow: 0 16px 32px rgba(20, 40, 70, 0.12);
-      border-color: #6fb4ee;
+      box-shadow: 0 14px 30px rgba(30, 60, 110, 0.12);
+      border-color: #93c5fd;
     }
-    .bb-avatar-circle {
+
+    .bb-team-avatar {
       width: 3.5rem;
       height: 3.5rem;
       border-radius: 9999px;
@@ -62,311 +209,471 @@
       align-items: center;
       justify-content: center;
       font-weight: 800;
-      font-size: 1.15rem;
+      font-size: 1.1rem;
       color: #ffffff;
-      box-shadow: 0 4px 12px rgba(47, 138, 224, 0.25);
+      flex-shrink: 0;
+      box-shadow: 0 4px 12px rgba(47, 128, 237, 0.25);
+    }
+
+    .bb-role-tag {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 0.15rem 0.5rem;
+      border-radius: 9999px;
+      background: #eff6ff;
+      color: #2563eb;
+      margin-top: 0.25rem;
+    }
+
+    /* Card Senac Oficial */
+    .bb-senac-card {
+      background: linear-gradient(135deg, #0c2340 0%, #15325b 50%, #0c2340 100%);
+      border: 1px solid #1e4273;
+      border-radius: 1.5rem;
+      color: #ffffff;
+      padding: 2rem;
+      box-shadow: 0 12px 30px rgba(12, 35, 64, 0.25);
     }
   </style>
 </head>
-<body class="bg-surface-900 text-ink-100 font-body antialiased">
-  <div class="bb-shell min-h-screen flex flex-col">
-    <!-- Header / Navbar -->
-    <div id="bb-nav"></div>
 
-    <main class="bb-main flex-1 py-8 md:py-12">
-      <div class="bb-container max-w-[1120px] mx-auto px-6">
+<body style="background-color: #f4f7fb; color: #1e293b; font-family: Inter, Segoe UI, system-ui, sans-serif; margin: 0;">
+  <div class="bb-shell">
+    <!-- Header / Navbar Pré-renderizado com Hotbar Mobile -->
+    <div id="bb-nav">
+      <div class="bb-topbar"></div>
+      <header class="bb-header">
+        <div class="bb-container bb-header__bar bb-header__bar--nav">
+          <a href="/pages/home/index.html" class="bb-logo shrink-0">
+            <span class="bb-logo__text bb-logo__text--dark">Best</span><span class="bb-logo__text bb-logo__text--accent">Buddy</span>
+          </a>
+          <nav aria-label="Navegação principal" class="bb-header__nav-wrap">
+            <ul class="bb-nav__links">
+              <li>
+                <a class="bb-nav__link" href="/pages/home/index.html">
+                  <span>Home</span>
+                </a>
+              </li>
+              <li>
+                <a class="bb-nav__link" href="/pages/animals/index.html">
+                  <span>Animais</span>
+                </a>
+              </li>
+              <li>
+                <a class="bb-nav__link" href="/pages/about/index.html" aria-current="page">
+                  <span>Sobre Nós</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+          <div class="bb-nav__user flex items-center gap-1.5 sm:gap-2">
+            <a href="/pages/auth/login.html" class="bb-btn bb-btn--secondary !px-2.5 sm:!px-4 !py-1 sm:!py-1.5 !text-xs whitespace-nowrap">Entrar</a>
+            <a href="/pages/auth/register.html" class="bb-btn bb-btn--primary !px-2.5 sm:!px-4 !py-1 sm:!py-1.5 !text-xs whitespace-nowrap">Cadastre-se</a>
+          </div>
+        </div>
+      </header>
+      <nav class="bb-hotbar-mobile" aria-label="Navegação inferior mobile">
+        <a href="/pages/home/index.html" class="bb-hotbar-item">
+          <span class="bb-hotbar-icon">🏠</span>
+          <span class="bb-hotbar-label">Home</span>
+        </a>
+        <a href="/pages/animals/index.html" class="bb-hotbar-item">
+          <span class="bb-hotbar-icon">🐾</span>
+          <span class="bb-hotbar-label">Animais</span>
+        </a>
+        <a href="/pages/about/index.html" class="bb-hotbar-item is-active">
+          <span class="bb-hotbar-icon">💙</span>
+          <span class="bb-hotbar-label">Sobre</span>
+        </a>
+        <a href="/pages/auth/login.html" class="bb-hotbar-item">
+          <span class="bb-hotbar-icon">🔑</span>
+          <span class="bb-hotbar-label">Entrar</span>
+        </a>
+      </nav>
+    </div>
+
+    <main class="bb-main" style="padding-top: 1.5rem; padding-bottom: 3.5rem;">
+      <div class="bb-container">
 
         <!-- Breadcrumb simples -->
-        <nav class="flex items-center gap-2 text-xs text-ink-300 mb-6" aria-label="Navegação estrutural">
-          <a href="/pages/home/index.html" class="hover:text-brand-500 transition-colors">Início</a>
+        <nav style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.78rem; color: #64748b; margin-bottom: 1.25rem;" aria-label="Navegação estrutural">
+          <a href="/pages/home/index.html" style="color: #64748b; text-decoration: none; font-weight: 500;">Início</a>
           <span>/</span>
-          <span class="text-brand-500 font-semibold">Sobre Nós</span>
+          <span style="color: #2f80ed; font-weight: 600;">Sobre Nós</span>
         </nav>
 
-        <!-- Hero Section -->
-        <section class="bb-about-hero p-8 md:p-12 mb-10 shadow-sm">
-          <div class="max-w-3xl">
-            <div class="bb-badge-senac mb-4">
-              <span>🎓</span>
-              <span>Projeto Integrador • Senac</span>
-              <span class="inline-block w-1.5 h-1.5 rounded-full bg-blue-600"></span>
-              <span>Adoção & Proteção Animal</span>
+        <!-- Hero Section em 2 Colunas com Foto e Apresentação -->
+        <section class="bb-about-hero" style="padding: 2rem; margin-bottom: 2.5rem;">
+          <div style="display: grid; grid-template-columns: 1fr; gap: 2rem; align-items: center;" class="md:!grid-cols-[1.25fr_1fr]">
+            <div>
+              <div class="bb-badge-senac" style="margin-bottom: 1rem;">
+                <span>🎓</span>
+                <span>Projeto Integrador • Senac São Paulo</span>
+              </div>
+
+              <h1 style="font-family: Sora, system-ui, sans-serif; font-size: 1.85rem; font-weight: 800; line-height: 1.25; color: #0f172a; margin: 0 0 1rem 0;">
+                De um trabalho acadêmico a uma <span style="color: #2f80ed;">missão de amor</span> e proteção animal.
+              </h1>
+
+              <p style="font-size: 0.95rem; line-height: 1.6; color: #475569; margin: 0 0 1.5rem 0;">
+                O <strong>Best Buddy</strong> nasceu com o objetivo de testar nossas competências técnicas de desenvolvimento de software no Senac. Ao conhecer a dura realidade dos resgates e dos pets desaparecidos, decidimos ir além da sala de aula: manter a plataforma viva, gratuita e a serviço de quem mais precisa.
+              </p>
+
+              <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem;">
+                <a href="/pages/animals/index.html" class="bb-btn bb-btn--primary" style="padding: 0.75rem 1.4rem; font-size: 0.88rem; border-radius: 0.75rem;">
+                  <span>🐾</span> Conhecer Pets para Adoção
+                </a>
+                <a href="#nossa-historia" class="bb-btn bb-btn--secondary" style="padding: 0.75rem 1.25rem; font-size: 0.88rem; border-radius: 0.75rem;">
+                  Ler Nossa História ↓
+                </a>
+              </div>
             </div>
 
-            <h1 class="text-3xl md:text-5xl font-extrabold text-ink-100 tracking-tight leading-tight mb-4 font-display">
-              De um trabalho acadêmico a uma <span class="text-brand-500">missão de amor</span> e proteção animal.
-            </h1>
-
-            <p class="text-base md:text-lg text-ink-300 leading-relaxed mb-6">
-              O <strong>Best Buddy</strong> nasceu nas salas de aula do <strong>Senac</strong> com o propósito de colocar à prova nossos aprendizados de tecnologia. Mas, ao conhecermos de perto os desafios do resgate animal, a causa nos conquistou: decidimos dar continuidade e colocar a tecnologia a serviço da comunidade e dos animais.
-            </p>
-
-            <div class="flex flex-wrap items-center gap-3 pt-2">
-              <a href="/pages/animals/index.html" class="bb-btn bb-btn--primary px-6 py-3 text-sm font-semibold inline-flex items-center gap-2 rounded-xl">
-                <span>🐾</span> Conhecer Pets para Adoção
-              </a>
-              <a href="#nossa-historia" class="bb-btn bb-btn--secondary px-5 py-3 text-sm font-semibold inline-flex items-center gap-2 rounded-xl">
-                Ler Nossa História ↓
-              </a>
+            <!-- Card Visual com Imagem -->
+            <div style="position: relative;">
+              <div class="bb-hero-img-card">
+                <picture>
+                  <source media="(max-width: 640px)" srcset="../../assets/images/cachorroComABocaAberta-mobile.webp" type="image/webp" />
+                  <source srcset="../../assets/images/cachorroComABocaAberta.webp" type="image/webp" />
+                  <img src="../../assets/images/cachorroComABocaAberta.jpg" alt="Cachorro feliz atendido pelo Best Buddy" style="width: 100%; height: 260px; object-fit: cover; display: block;" width="600" height="400" />
+                </picture>
+                <div class="bb-hero-floating-pill">
+                  <span style="font-size: 1.2rem;">🐶</span>
+                  <div>
+                    <div style="font-weight: 700; color: #0f172a;">100% Voluntário e Aberto</div>
+                    <div style="font-size: 0.7rem; color: #64748b;">Feito com dedicação por 6 estudantes</div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </section>
 
-        <!-- Destaques Rápidos em Cards -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
-          <div class="bb-card p-5 bg-white border border-border rounded-2xl flex items-center gap-4">
-            <div class="w-12 h-12 rounded-xl bg-blue-50 text-brand-500 flex items-center justify-center text-2xl shrink-0">
+        <!-- Destaques Rápidos em Cards (Grid 4 colunas) -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-bottom: 2.5rem;">
+          <div class="bb-stat-card">
+            <div class="bb-stat-icon-wrap" style="background-color: #eff6ff; color: #2563eb;">
               🎓
             </div>
             <div>
-              <div class="text-xs uppercase font-bold text-ink-500 tracking-wider">Origem</div>
-              <div class="text-base font-extrabold text-ink-100 font-display">Senac São Paulo</div>
+              <div style="font-size: 0.7rem; text-transform: uppercase; font-weight: 700; color: #64748b; letter-spacing: 0.05em;">Origem</div>
+              <div style="font-size: 1rem; font-weight: 800; color: #0f172a; font-family: Sora, sans-serif;">Senac São Paulo</div>
             </div>
           </div>
 
-          <div class="bb-card p-5 bg-white border border-border rounded-2xl flex items-center gap-4">
-            <div class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-2xl shrink-0">
+          <div class="bb-stat-card">
+            <div class="bb-stat-icon-wrap" style="background-color: #ecfdf5; color: #059669;">
               ❤️
             </div>
             <div>
-              <div class="text-xs uppercase font-bold text-ink-500 tracking-wider">Compromisso</div>
-              <div class="text-base font-extrabold text-ink-100 font-display">Causa Animal</div>
+              <div style="font-size: 0.7rem; text-transform: uppercase; font-weight: 700; color: #64748b; letter-spacing: 0.05em;">Compromisso</div>
+              <div style="font-size: 1rem; font-weight: 800; color: #0f172a; font-family: Sora, sans-serif;">Causa Animal</div>
             </div>
           </div>
 
-          <div class="bb-card p-5 bg-white border border-border rounded-2xl flex items-center gap-4">
-            <div class="w-12 h-12 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center text-2xl shrink-0">
+          <div class="bb-stat-card">
+            <div class="bb-stat-icon-wrap" style="background-color: #fffbeb; color: #d97706;">
               👥
             </div>
             <div>
-              <div class="text-xs uppercase font-bold text-ink-500 tracking-wider">Equipe</div>
-              <div class="text-base font-extrabold text-ink-100 font-display">6 Estudantes</div>
+              <div style="font-size: 0.7rem; text-transform: uppercase; font-weight: 700; color: #64748b; letter-spacing: 0.05em;">Equipe</div>
+              <div style="font-size: 1rem; font-weight: 800; color: #0f172a; font-family: Sora, sans-serif;">6 Estudantes</div>
             </div>
           </div>
 
-          <div class="bb-card p-5 bg-white border border-border rounded-2xl flex items-center gap-4">
-            <div class="w-12 h-12 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center text-2xl shrink-0">
+          <div class="bb-stat-card">
+            <div class="bb-stat-icon-wrap" style="background-color: #faf5ff; color: #7c3aed;">
               🐶
             </div>
             <div>
-              <div class="text-xs uppercase font-bold text-ink-500 tracking-wider">Objetivo</div>
-              <div class="text-base font-extrabold text-ink-100 font-display">Salvar e Acolher</div>
+              <div style="font-size: 0.7rem; text-transform: uppercase; font-weight: 700; color: #64748b; letter-spacing: 0.05em;">Objetivo</div>
+              <div style="font-size: 1rem; font-weight: 800; color: #0f172a; font-family: Sora, sans-serif;">Salvar e Acolher</div>
             </div>
           </div>
         </div>
 
-        <!-- Seção: Nossa História detalhada -->
-        <section id="nossa-historia" class="bb-card p-8 md:p-12 bg-white rounded-3xl border border-border mb-12 shadow-sm">
-          <div class="max-w-3xl mx-auto">
-            <div class="text-center mb-10">
-              <span class="text-xs font-bold uppercase tracking-widest text-brand-500 bg-brand-500/10 px-3 py-1 rounded-full">
+        <!-- Seção: Nossa História detalhada com Linha do Tempo -->
+        <section id="nossa-historia" style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 1.5rem; padding: 2rem; margin-bottom: 2.5rem; box-shadow: 0 4px 20px rgba(30, 60, 110, 0.04);">
+          <div style="max-w: 800px; margin: 0 auto;">
+            <div style="text-align: center; margin-bottom: 2rem;">
+              <span style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #2f80ed; background: #eff6ff; padding: 0.3rem 0.85rem; border-radius: 9999px;">
                 Nossa Trajetória
               </span>
-              <h2 class="text-2xl md:text-3xl font-extrabold text-ink-100 font-display mt-3">
+              <h2 style="font-family: Sora, sans-serif; font-size: 1.65rem; font-weight: 800; color: #0f172a; margin: 0.6rem 0 0.3rem 0;">
                 Como tudo começou no SENAC
               </h2>
+              <p style="font-size: 0.85rem; color: #64748b; margin: 0;">A evolução de um exercício de aula para um propósito de vida</p>
             </div>
 
-            <div class="space-y-6 text-ink-300 leading-relaxed text-sm md:text-base">
-              <p>
-                O <strong>Best Buddy</strong> teve seu pontapé inicial como tema do nosso <strong>Projeto Integrador</strong> no SENAC. O desafio que nos foi proposto era colocar em prática todo o conhecimento acumulado ao longo das aulas: arquitetura de software, interfaces responsivas, segurança de dados e banco de dados relacional.
-              </p>
-
-              <div class="p-6 rounded-2xl bg-surface-700/60 border-l-4 border-brand-500 my-6">
-                <p class="font-medium text-ink-100 italic">
-                  "No começo, era para ser apenas um trabalho avaliativo para mostrar aos professores do Senac o que fomos capazes de aprender. Mas, à medida que construíamos a plataforma, a causa do resgate animal nos tocou profundamente."
-                </p>
+            <div class="bb-story-timeline">
+              <!-- Passo 1 -->
+              <div class="bb-story-step">
+                <div class="bb-story-step__marker">1</div>
+                <div>
+                  <h3 style="font-family: Sora, sans-serif; font-size: 1.05rem; font-weight: 700; color: #0f172a; margin: 0 0 0.4rem 0;">
+                    O Desafio do Projeto Integrador
+                  </h3>
+                  <p style="font-size: 0.9rem; line-height: 1.6; color: #475569; margin: 0;">
+                    A proposta inicial era aplicar na prática conceitos sólidos de engenharia de software ensinados no Senac: banco de dados estruturado, APIs REST, responsividade, segurança e boas práticas de UX. O tema escolhido por afinidade do grupo foi a proteção e adoção de animais.
+                  </p>
+                </div>
               </div>
 
-              <p>
-                Conversando com protetores voluntários, ONGs com poucos recursos e pessoas aflitas em busca de seus companheiros perdidos, nos demos conta de uma coisa: <strong>não dava para fechar o editor de código e apenas esperar uma nota</strong>.
-              </p>
+              <!-- Citação destacada -->
+              <div class="bb-quote-banner">
+                <p style="font-size: 0.92rem; font-style: italic; color: #1e293b; margin: 0 0 0.5rem 0; line-height: 1.6;">
+                  "No começo, era para ser apenas um trabalho avaliativo para mostrar aos professores o que fomos capazes de aprender. Mas, à medida que interagíamos com protetores e tutores, a causa nos tocou profundamente. Vimos que não podíamos simplesmente fechar o código ao final do semestre."
+                </p>
+                <div style="font-size: 0.75rem; font-weight: 700; color: #2f80ed;">
+                  — Grupo de Desenvolvedores do Best Buddy
+                </div>
+              </div>
 
-              <p>
-                Existe uma carência imensa de tecnologia simples, rápida e acolhedora voltada para o bem-estar animal. Por isso, assumimos um pacto conjunto como grupo: <strong>o Best Buddy não vai parar no término do curso</strong>. Continuaremos aprimorando a ferramenta e dedicando nosso conhecimento para apoiar protetores, tutores e famílias que desejam dar uma nova chance a um animal resgatado.
-              </p>
+              <!-- Passo 2 -->
+              <div class="bb-story-step">
+                <div class="bb-story-step__marker">2</div>
+                <div>
+                  <h3 style="font-family: Sora, sans-serif; font-size: 1.05rem; font-weight: 700; color: #0f172a; margin: 0 0 0.4rem 0;">
+                    O Contato com a Dor Real
+                  </h3>
+                  <p style="font-size: 0.9rem; line-height: 1.6; color: #475569; margin: 0;">
+                    Ao mapearmos os fluxos, percebemos que o maior obstáculo para quem resgata ou perde um animal é a falta de canais diretos e limpos. Muitas pessoas dependem de redes sociais desorganizadas onde publicações se perdem em poucas horas.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Passo 3 -->
+              <div class="bb-story-step">
+                <div class="bb-story-step__marker">3</div>
+                <div>
+                  <h3 style="font-family: Sora, sans-serif; font-size: 1.05rem; font-weight: 700; color: #0f172a; margin: 0 0 0.4rem 0;">
+                    O Pacto de Continuidade
+                  </h3>
+                  <p style="font-size: 0.9rem; line-height: 1.6; color: #475569; margin: 0;">
+                    Decidimos que o Best Buddy não teria data de validade. Estamos constantemente aplicando novas melhorias (versão mobile, otimizações de performance, conformidade com a LGPD e suporte facilitado via WhatsApp) para que qualquer cidadão encontre ou adote um pet com facilidade.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </section>
 
-        <!-- Missão, Visão e Valores -->
-        <section class="mb-12">
-          <div class="text-center mb-8">
-            <span class="text-xs font-bold uppercase tracking-widest text-brand-500 bg-brand-500/10 px-3 py-1 rounded-full">
-              Pilares
+        <!-- Missão, Visão e Valores (3 Cards Elegantes) -->
+        <section style="margin-bottom: 2.5rem;">
+          <div style="text-align: center; margin-bottom: 2rem;">
+            <span style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #2f80ed; background: #eff6ff; padding: 0.3rem 0.85rem; border-radius: 9999px;">
+              Diretrizes
             </span>
-            <h2 class="text-2xl md:text-3xl font-extrabold text-ink-100 font-display mt-3">
+            <h2 style="font-family: Sora, sans-serif; font-size: 1.65rem; font-weight: 800; color: #0f172a; margin: 0.6rem 0 0.3rem 0;">
               Missão, Visão e Valores
             </h2>
+            <p style="font-size: 0.85rem; color: #64748b; margin: 0;">O que guia cada linha de código e decisão no projeto</p>
           </div>
 
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
             <!-- Missão -->
-            <div class="bb-card p-6 bg-white rounded-2xl border border-border shadow-sm flex flex-col justify-between">
+            <div class="bb-pilar-card bb-pilar-card--blue">
               <div>
-                <div class="w-12 h-12 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center text-2xl mb-4">
+                <div style="width: 3rem; height: 3rem; border-radius: 0.75rem; background: #eff6ff; color: #2563eb; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; margin-bottom: 1rem;">
                   🎯
                 </div>
-                <h3 class="text-lg font-bold text-ink-100 font-display mb-2">Nossa Missão</h3>
-                <p class="text-sm text-ink-300 leading-relaxed">
-                  Conectar corações e facilitar a adoção responsável e a localização de animais perdidos através de tecnologia ágil, acessível e humanizada.
+                <h3 style="font-family: Sora, sans-serif; font-size: 1.15rem; font-weight: 800; color: #0f172a; margin: 0 0 0.5rem 0;">
+                  Nossa Missão
+                </h3>
+                <p style="font-size: 0.9rem; line-height: 1.6; color: #475569; margin: 0;">
+                  Conectar corações e viabilizar a adoção responsável e a rápida localização de animais perdidos por meio de tecnologia acessível, rápida e humanizada.
                 </p>
+              </div>
+              <div style="margin-top: 1.5rem; font-size: 0.75rem; font-weight: 700; color: #2f80ed; text-transform: uppercase;">
+                Propósito Central
               </div>
             </div>
 
             <!-- Visão -->
-            <div class="bb-card p-6 bg-white rounded-2xl border border-border shadow-sm flex flex-col justify-between">
+            <div class="bb-pilar-card bb-pilar-card--emerald">
               <div>
-                <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-2xl mb-4">
+                <div style="width: 3rem; height: 3rem; border-radius: 0.75rem; background: #ecfdf5; color: #059669; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; margin-bottom: 1rem;">
                   🌟
                 </div>
-                <h3 class="text-lg font-bold text-ink-100 font-display mb-2">Nossa Visão</h3>
-                <p class="text-sm text-ink-300 leading-relaxed">
-                  Ser uma comunidade solidária de referência, mostrando que o conhecimento técnico adquirido em sala de aula pode salvar vidas reais e transformar a sociedade.
+                <h3 style="font-family: Sora, sans-serif; font-size: 1.15rem; font-weight: 800; color: #0f172a; margin: 0 0 0.5rem 0;">
+                  Nossa Visão
+                </h3>
+                <p style="font-size: 0.9rem; line-height: 1.6; color: #475569; margin: 0;">
+                  Ser uma plataforma comunitária de referência regional, provando que o aprendizado em sala de aula pode salvar vidas reais e transformar a sociedade.
                 </p>
+              </div>
+              <div style="margin-top: 1.5rem; font-size: 0.75rem; font-weight: 700; color: #059669; text-transform: uppercase;">
+                Onde Queremos Chegar
               </div>
             </div>
 
             <!-- Valores -->
-            <div class="bb-card p-6 bg-white rounded-2xl border border-border shadow-sm flex flex-col justify-between">
+            <div class="bb-pilar-card bb-pilar-card--amber">
               <div>
-                <div class="w-12 h-12 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center text-2xl mb-4">
+                <div style="width: 3rem; height: 3rem; border-radius: 0.75rem; background: #fffbeb; color: #d97706; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; margin-bottom: 1rem;">
                   💡
                 </div>
-                <h3 class="text-lg font-bold text-ink-100 font-display mb-2">Nossos Valores</h3>
-                <p class="text-sm text-ink-300 leading-relaxed">
-                  Amor incondicional aos animais, transparência no processo, responsabilidade social, ética e respeito à privacidade (LGPD).
+                <h3 style="font-family: Sora, sans-serif; font-size: 1.15rem; font-weight: 800; color: #0f172a; margin: 0 0 0.5rem 0;">
+                  Nossos Valores
+                </h3>
+                <p style="font-size: 0.9rem; line-height: 1.6; color: #475569; margin: 0;">
+                  Amor genuíno aos animais, transparência com os tutores, responsabilidade social, integridade técnica e total respeito à privacidade dos usuários (LGPD).
                 </p>
+              </div>
+              <div style="margin-top: 1.5rem; font-size: 0.75rem; font-weight: 700; color: #d97706; text-transform: uppercase;">
+                Nossos Princípios
               </div>
             </div>
           </div>
         </section>
 
-        <!-- A Equipe (6 Alunos) -->
-        <section class="mb-12">
-          <div class="text-center mb-8">
-            <span class="text-xs font-bold uppercase tracking-widest text-brand-500 bg-brand-500/10 px-3 py-1 rounded-full">
-              Os Criadores
+        <!-- A Equipe (6 Alunos com Avatares Estilizados e Papeis) -->
+        <section style="margin-bottom: 2.5rem;">
+          <div style="text-align: center; margin-bottom: 2rem;">
+            <span style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #2f80ed; background: #eff6ff; padding: 0.3rem 0.85rem; border-radius: 9999px;">
+              Desenvolvedores
             </span>
-            <h2 class="text-2xl md:text-3xl font-extrabold text-ink-100 font-display mt-3">
+            <h2 style="font-family: Sora, sans-serif; font-size: 1.65rem; font-weight: 800; color: #0f172a; margin: 0.6rem 0 0.3rem 0;">
               Quem faz o Best Buddy acontecer
             </h2>
-            <p class="text-sm text-ink-300 mt-2 max-w-lg mx-auto">
-              Conheça os alunos do Senac responsáveis pelo planejamento, design, desenvolvimento e manutenção contínua da plataforma.
+            <p style="font-size: 0.85rem; color: #64748b; margin: 0; max-width: 540px; margin-left: auto; margin-right: auto;">
+              Conheça os alunos do Senac responsáveis pelo planejamento, banco de dados, design, código e manutenção da plataforma.
             </p>
           </div>
 
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            <!-- Membro 1: Bruno -->
-            <div class="bb-card bb-team-card p-6 bg-white rounded-2xl border border-border flex items-start gap-4">
-              <div class="bb-avatar-circle bg-gradient-to-tr from-blue-600 to-indigo-500 shrink-0">
+          <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1rem;">
+            <!-- Bruno -->
+            <div class="bb-team-card">
+              <div class="bb-team-avatar" style="background: linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%);">
                 BF
               </div>
               <div>
-                <h3 class="text-base font-bold text-ink-100 font-display leading-tight">Bruno Felipe Ferreira Boldrin</h3>
-                <span class="text-xs text-brand-500 font-semibold block mt-0.5">Desenvolvedor & Aluno Senac</span>
-                <p class="text-xs text-ink-300 mt-2">Dedicado ao desenvolvimento e estruturação do projeto.</p>
+                <h3 style="font-family: Sora, sans-serif; font-size: 0.95rem; font-weight: 700; color: #0f172a; margin: 0 0 2px 0;">
+                  Bruno Felipe Ferreira Boldrin
+                </h3>
+                <span class="bb-role-tag">Arquitetura & Estruturação</span>
+                <p style="font-size: 0.78rem; color: #64748b; margin: 0.35rem 0 0 0;">Desenvolvimento e organização dos módulos centrais da aplicação.</p>
               </div>
             </div>
 
-            <!-- Membro 2: Cristian -->
-            <div class="bb-card bb-team-card p-6 bg-white rounded-2xl border border-border flex items-start gap-4">
-              <div class="bb-avatar-circle bg-gradient-to-tr from-cyan-600 to-blue-500 shrink-0">
+            <!-- Cristian -->
+            <div class="bb-team-card">
+              <div class="bb-team-avatar" style="background: linear-gradient(135deg, #0284c7 0%, #38bdf8 100%);">
                 CD
               </div>
               <div>
-                <h3 class="text-base font-bold text-ink-100 font-display leading-tight">Cristian Henrique Diniz</h3>
-                <span class="text-xs text-brand-500 font-semibold block mt-0.5">Desenvolvedor & Aluno Senac</span>
-                <p class="text-xs text-ink-300 mt-2">Foco em integração de sistemas, código e experiência do usuário.</p>
+                <h3 style="font-family: Sora, sans-serif; font-size: 0.95rem; font-weight: 700; color: #0f172a; margin: 0 0 2px 0;">
+                  Cristian Henrique Diniz
+                </h3>
+                <span class="bb-role-tag">Integração de Sistemas</span>
+                <p style="font-size: 0.78rem; color: #64748b; margin: 0.35rem 0 0 0;">Comunicação entre serviços, API e consistência de dados.</p>
               </div>
             </div>
 
-            <!-- Membro 3: Eddie -->
-            <div class="bb-card bb-team-card p-6 bg-white rounded-2xl border border-border flex items-start gap-4">
-              <div class="bb-avatar-circle bg-gradient-to-tr from-teal-600 to-emerald-500 shrink-0">
+            <!-- Eddie -->
+            <div class="bb-team-card">
+              <div class="bb-team-avatar" style="background: linear-gradient(135deg, #0d9488 0%, #14b8a6 100%);">
                 EP
               </div>
               <div>
-                <h3 class="text-base font-bold text-ink-100 font-display leading-tight">Eddie Victor De Andrade Pereira</h3>
-                <span class="text-xs text-brand-500 font-semibold block mt-0.5">Desenvolvedor & Aluno Senac</span>
-                <p class="text-xs text-ink-300 mt-2">Comprometido com a lógica da aplicação e a causa animal.</p>
+                <h3 style="font-family: Sora, sans-serif; font-size: 0.95rem; font-weight: 700; color: #0f172a; margin: 0 0 2px 0;">
+                  Eddie Victor De Andrade Pereira
+                </h3>
+                <span class="bb-role-tag">Lógica & Regras de Negócio</span>
+                <p style="font-size: 0.78rem; color: #64748b; margin: 0.35rem 0 0 0;">Fluxos de adoção, status dos anúncios e validações de sistema.</p>
               </div>
             </div>
 
-            <!-- Membro 4: Fernando -->
-            <div class="bb-card bb-team-card p-6 bg-white rounded-2xl border border-border flex items-start gap-4">
-              <div class="bb-avatar-circle bg-gradient-to-tr from-amber-600 to-orange-500 shrink-0">
+            <!-- Fernando -->
+            <div class="bb-team-card">
+              <div class="bb-team-avatar" style="background: linear-gradient(135deg, #ea580c 0%, #f97316 100%);">
                 FS
               </div>
               <div>
-                <h3 class="text-base font-bold text-ink-100 font-display leading-tight">Fernando Santos Sinoara</h3>
-                <span class="text-xs text-brand-500 font-semibold block mt-0.5">Desenvolvedor & Aluno Senac</span>
-                <p class="text-xs text-ink-300 mt-2">Atuação no planejamento, testes e fluxo de adoção.</p>
+                <h3 style="font-family: Sora, sans-serif; font-size: 0.95rem; font-weight: 700; color: #0f172a; margin: 0 0 2px 0;">
+                  Fernando Santos Sinoara
+                </h3>
+                <span class="bb-role-tag">Qualidade & Testes</span>
+                <p style="font-size: 0.78rem; color: #64748b; margin: 0.35rem 0 0 0;">Planejamento de casos de teste, validações e suporte a tutores.</p>
               </div>
             </div>
 
-            <!-- Membro 5: Gustavo -->
-            <div class="bb-card bb-team-card p-6 bg-white rounded-2xl border border-border flex items-start gap-4">
-              <div class="bb-avatar-circle bg-gradient-to-tr from-purple-600 to-violet-500 shrink-0">
+            <!-- Gustavo -->
+            <div class="bb-team-card">
+              <div class="bb-team-avatar" style="background: linear-gradient(135deg, #7c3aed 0%, #8b5cf6 100%);">
                 GA
               </div>
               <div>
-                <h3 class="text-base font-bold text-ink-100 font-display leading-tight">Gustavo Cruz de Almeida</h3>
-                <span class="text-xs text-brand-500 font-semibold block mt-0.5">Desenvolvedor & Aluno Senac</span>
-                <p class="text-xs text-ink-300 mt-2">Dedicado à arquitetura de dados e usabilidade da plataforma.</p>
+                <h3 style="font-family: Sora, sans-serif; font-size: 0.95rem; font-weight: 700; color: #0f172a; margin: 0 0 2px 0;">
+                  Gustavo Cruz de Almeida
+                </h3>
+                <span class="bb-role-tag">Banco de Dados & Usabilidade</span>
+                <p style="font-size: 0.78rem; color: #64748b; margin: 0.35rem 0 0 0;">Modelagem relacional de dados, performance e interface responsiva.</p>
               </div>
             </div>
 
-            <!-- Membro 6: Luiz -->
-            <div class="bb-card bb-team-card p-6 bg-white rounded-2xl border border-border flex items-start gap-4">
-              <div class="bb-avatar-circle bg-gradient-to-tr from-rose-600 to-pink-500 shrink-0">
+            <!-- Luiz -->
+            <div class="bb-team-card">
+              <div class="bb-team-avatar" style="background: linear-gradient(135deg, #e11d48 0%, #f43f5e 100%);">
                 LB
               </div>
               <div>
-                <h3 class="text-base font-bold text-ink-100 font-display leading-tight">Luiz Eduardo Bonini</h3>
-                <span class="text-xs text-brand-500 font-semibold block mt-0.5">Desenvolvedor & Aluno Senac</span>
-                <p class="text-xs text-ink-300 mt-2">Focado em qualidade, estabilidade e usabilidade contínua.</p>
+                <h3 style="font-family: Sora, sans-serif; font-size: 0.95rem; font-weight: 700; color: #0f172a; margin: 0 0 2px 0;">
+                  Luiz Eduardo Bonini
+                </h3>
+                <span class="bb-role-tag">Frontend & Experiência</span>
+                <p style="font-size: 0.78rem; color: #64748b; margin: 0.35rem 0 0 0;">Design visual, responsividade mobile e acessibilidade dos componentes.</p>
               </div>
             </div>
           </div>
         </section>
 
-        <!-- Agradecimento ao Senac -->
-        <section class="bb-card p-6 md:p-8 bg-gradient-to-r from-blue-900 via-indigo-900 to-slate-900 text-white rounded-3xl mb-12 shadow-md">
-          <div class="flex flex-col md:flex-row items-center justify-between gap-6">
-            <div class="flex items-center gap-4">
-              <div class="w-14 h-14 rounded-2xl bg-white/10 flex items-center justify-center text-3xl shrink-0">
+        <!-- Agradecimento Especial ao Senac (Card Escuro Institucional) -->
+        <section class="bb-senac-card" style="margin-bottom: 2.5rem;">
+          <div style="display: flex; flex-direction: column; gap: 1.25rem;" class="md:!flex-row md:!items-center md:!justify-between">
+            <div style="display: flex; align-items: flex-start; gap: 1rem;">
+              <div style="width: 3.5rem; height: 3.5rem; border-radius: 1rem; background: rgba(255, 255, 255, 0.12); display: flex; align-items: center; justify-content: center; font-size: 1.8rem; flex-shrink: 0; border: 1px solid rgba(255, 255, 255, 0.15);">
                 🏛️
               </div>
               <div>
-                <h3 class="text-lg font-bold font-display">Agradecimento Especial ao SENAC</h3>
-                <p class="text-xs md:text-sm text-slate-300 mt-1 max-w-xl">
-                  Aos professores, mentores e coordenadores do Senac que nos forneceram a bagagem técnica, ética e o incentivo necessário para transformar um exercício prático em uma iniciativa com impacto comunitário real.
+                <div style="display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.2rem 0.65rem; border-radius: 9999px; background: rgba(255, 255, 255, 0.12); font-size: 0.7rem; font-weight: 700; margin-bottom: 0.4rem;">
+                  Reconhecimento Acadêmico
+                </div>
+                <h3 style="font-family: Sora, sans-serif; font-size: 1.2rem; font-weight: 800; margin: 0 0 0.4rem 0;">
+                  Agradecimento Especial ao SENAC
+                </h3>
+                <p style="font-size: 0.85rem; line-height: 1.6; color: #cbd5e1; margin: 0; max-width: 620px;">
+                  Aos professores, instrutores e orientadores do Senac São Paulo que nos transmitiram não apenas conhecimento técnico em tecnologia, mas a inspiração ética para transformar projetos acadêmicos em benefícios reais para a sociedade.
                 </p>
               </div>
             </div>
-            <div class="shrink-0">
-              <span class="px-4 py-2 rounded-full bg-white/15 border border-white/20 text-xs font-semibold text-slate-200">
-                Projeto Integrador 2026
+
+            <div style="flex-shrink: 0; align-self: flex-start;" class="md:!align-self-center">
+              <span style="display: inline-block; padding: 0.5rem 1rem; border-radius: 9999px; background: rgba(255, 255, 255, 0.15); border: 1px solid rgba(255, 255, 255, 0.25); font-size: 0.78rem; font-weight: 700; color: #ffffff;">
+                Projeto Integrador • 2026
               </span>
             </div>
           </div>
         </section>
 
-        <!-- Call to Action Final -->
-        <section class="text-center py-6">
-          <h2 class="text-2xl md:text-3xl font-extrabold text-ink-100 font-display mb-3">
+        <!-- Call To Action Final (Card Acolhedor) -->
+        <section style="background: #ffffff; border: 1px solid #dbeafe; border-radius: 1.5rem; padding: 2.5rem 1.5rem; text-align: center; box-shadow: 0 10px 25px -5px rgba(30, 60, 110, 0.06);">
+          <div style="width: 3.5rem; height: 3.5rem; border-radius: 9999px; background: #eff6ff; color: #2f80ed; font-size: 1.6rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem auto;">
+            💙
+          </div>
+          <h2 style="font-family: Sora, sans-serif; font-size: 1.65rem; font-weight: 800; color: #0f172a; margin: 0 0 0.5rem 0;">
             Faça parte dessa corrente do bem!
           </h2>
-          <p class="text-sm text-ink-300 mb-6 max-w-md mx-auto">
-            Seja adotando um amigo, compartilhando um caso de pet perdido ou divulgando um animal que precisa de um lar.
+          <p style="font-size: 0.9rem; color: #64748b; margin: 0 auto 1.5rem auto; max-width: 480px; line-height: 1.6;">
+            Adotar é um ato de responsabilidade e carinho. Conheça nossos companheiros disponíveis ou anuncie um pet que precisa de um novo lar.
           </p>
-          <div class="flex flex-wrap items-center justify-center gap-3">
-            <a href="/pages/animals/index.html" class="bb-btn bb-btn--primary px-6 py-3 text-sm font-semibold rounded-xl">
-              🐾 Adotar um Pet
+          <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 0.75rem;">
+            <a href="/pages/animals/index.html" class="bb-btn bb-btn--primary" style="padding: 0.75rem 1.5rem; font-size: 0.9rem; border-radius: 0.75rem;">
+              🐾 Ver Animais para Adoção
             </a>
-            <a href="/pages/home/index.html" class="bb-btn bb-btn--secondary px-6 py-3 text-sm font-semibold rounded-xl">
-              🏠 Voltar para a Página Inicial
+            <a href="/pages/home/index.html" class="bb-btn bb-btn--secondary" style="padding: 0.75rem 1.5rem; font-size: 0.9rem; border-radius: 0.75rem;">
+              🏠 Voltar para a Home
             </a>
           </div>
         </section>
@@ -374,33 +681,54 @@
       </div>
     </main>
 
-    <!-- Footer padrão -->
-    <div id="bb-footer"></div>
+    <!-- Footer Padrão Pré-renderizado -->
+    <div id="bb-footer">
+      <footer class="bb-footer"
+        style="background-color: #0c2340 !important; color: #e2e8f0; width: 100%; padding: 1.75rem 0; margin-top: 4rem; border-top: 1px solid #1a3a60;">
+        <div class="bb-container"
+          style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem;">
+          <div
+            style="display: flex; align-items: center; gap: 0.5rem; font-family: 'Baloo 2', 'Sora', sans-serif; font-size: 1.15rem; font-weight: 700; color: #ffffff;">
+            <span>Best <span style="color: #6fb4ee;">Buddy</span></span>
+          </div>
+
+          <div style="text-align: center; color: #94a3b8; font-size: 0.8rem;">
+            &copy; 2026 Best Buddy | Adoção responsável com amor.
+          </div>
+
+          <div style="display: flex; align-items: center; gap: 1.5rem; font-size: 0.8rem; flex-wrap: wrap;">
+            <a href="/pages/about/index.html" id="bb-footer-link-about"
+              style="color: #cbd5e1; text-decoration: none; transition: color 0.2s;">Sobre nós</a>
+            <a href="/pages/animals/index.html"
+              style="color: #cbd5e1; text-decoration: none; transition: color 0.2s;">Contato</a>
+            <a href="/pages/legal/terms.html"
+              style="color: #cbd5e1; text-decoration: none; transition: color 0.2s;">Termos de Uso</a>
+            <a href="/pages/legal/privacy.html"
+              style="color: #cbd5e1; text-decoration: none; transition: color 0.2s;">Privacidade & Cookies</a>
+          </div>
+        </div>
+      </footer>
+    </div>
   </div>
 
-  <!-- Scripts do ecossistema Best Buddy -->
-  <script src="../../js/config.js"></script>
-  <script src="../../js/utils/storage.js"></script>
-  <script src="../../js/utils/header-scroll.js"></script>
-  <script src="../../js/components/Navigation.js?v=bb3"></script>
-  <script src="../../js/components/Footer.js?v=bb3"></script>
+  <!-- Scripts do ecossistema Best Buddy com defer -->
+  <script src="../../js/config.js" defer></script>
+  <script src="../../js/utils/storage.js" defer></script>
+  <script src="../../js/utils/header-scroll.js" defer></script>
+  <script src="../../js/components/Navigation.js?v=bb4" defer></script>
+  <script src="../../js/components/Footer.js?v=bb3" defer></script>
+  <script src="../../js/components/CookieBanner.js" defer></script>
 
   <script>
-    // Inicialização da barra de navegação e rodapé oficiais do Best Buddy
-    if (typeof bbRenderNavigation === "function") {
-      bbRenderNavigation("#bb-nav", "about");
-    }
-    if (typeof bbRenderFooter === "function") {
-      bbRenderFooter("#bb-footer");
-    }
-
-    // Se aberto direto no Windows via duplo clique (protocolo file:), ajusta links para caminhos relativos
-    if (window.location.protocol === "file:") {
-      document.querySelectorAll('a[href^="/pages/"]').forEach((a) => {
-        const href = a.getAttribute("href");
-        a.setAttribute("href", "../.." + href);
-      });
-    }
+    document.addEventListener("DOMContentLoaded", function () {
+      if (typeof bbRenderNavigation === "function") {
+        bbRenderNavigation("#bb-nav", "about");
+      }
+      if (typeof bbRenderFooter === "function") {
+        bbRenderFooter("#bb-footer");
+      }
+    });
   </script>
 </body>
+
 </html>

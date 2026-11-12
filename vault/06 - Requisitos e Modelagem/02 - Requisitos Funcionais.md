@@ -10,19 +10,17 @@ Este documento cataloga os Requisitos Funcionais do sistema **Best Buddy**, orga
 ### `RF01` — Cadastro de Usuário
 * **Descrição:** Formulário ágil e acessível de criação de conta contendo os seguintes campos na mesma ordem da interface:
   1. `nome`: Obrigatório, mínimo de 3 caracteres, texto alfanumérico sem caracteres especiais proibidos (indicado com `*` acessível para leitores de tela).
-  2. `email`: Obrigatório, formato de e-mail válido, normalizado (lowercase) e único no banco (indicado com `*`).
+  2. `email`: Obrigatório, formato de e-mail válido. Unico no banco (indicado com `*`). Backend força a conversão em lowercase.
   3. `telefone` (ou WhatsApp): Celular com DDD (10 ou 11 dígitos numéricos), obrigatório, higienizado, único e vinculado às publicações (indicado com `*`).
   4. `senha`: Obrigatória, não permitindo senha fraca — mínimo de 8 caracteres contendo letras maiúsculas, minúsculas, pelo menos um número e pelo menos um caractere especial, com hash seguro no backend (indicado com `*`).
   5. `confirmar_senha`: Obrigatório e idêntico à senha digitada (indicado com `*`).
   6. `termos_aceitos`: Aceite obrigatório dos Termos de Uso e Política de Privacidade (LGPD).
 
 ### `RF02` — Autenticação de Usuário (Login)
-* **Descrição:** Autenticação via email e senha retornando par de tokens JWT (`access` e `refresh`) e dados essenciais do usuário (`id`, `email`, `telefone`).
+* **Descrição:** Autenticação feita apartir de  email e senha.
 
-### `RF03` — Redirecionamento e Interceptação de Visitantes
-* **Descrição:** 
-  - Visitantes não autenticados podem ver todos os botões de ação ("Anunciar Animal", "Reportar Desaparecido"). Ao clicar deslogado, são redirecionados para a tela de login/cadastro com preservação da rota de retorno (`next=/...`).
-  - Usuários já autenticados que tentarem acessar páginas de autenticação (`/login.html` ou `/register.html`) são redirecionados automaticamente para a Home (`/pages/home/index.html`).
+### `RF03` — Redirecionamento de Usuários Autenticados
+* **Descrição:** Usuários logados, ao tentarem acessar as rotas de autenticação, serão redirecionados para a página Home.
 
 ### `RF04` — Gestão de Perfil do Tutor ("Editar Perfil")
 * **Descrição:** Interface autenticada para o usuário gerenciar suas credenciais e contato com regras de segurança estritas:
@@ -53,15 +51,27 @@ Este documento cataloga os Requisitos Funcionais do sistema **Best Buddy**, orga
   - **Tipo de animal:** Cachorro, Gato, Outro.
 
 ### `RF07` — Cadastro de Pet para Adoção
-* **Descrição:** Formulário para usuário logado anunciar um animal para adoção (`tipo_servico='ADOCAO'`):
+* **Descrição:** Formulário estruturado em etapas (abas) para o usuário autenticado anunciar um animal para adoção (`tipo_servico='ADOCAO'`), organizado na mesma ordem dos campos da interface:
   - **Pré-requisito:** Usuário deve estar autenticado.
-  - **Campos Obrigatórios:** Foto do animal (anexo PNG ou JPG), tipo de animal (`CACHORRO`, `GATO`, `OUTRO`), cidade, estado (UF), descrição (máx. 255 caracteres) e telefone de contato (preenchido automaticamente caso o usuário já possua número no perfil, ou disponibilizado para digitação caso contrário).
-  - **Campos Opcionais:** Nome, raça, sexo (`M`, `F`, `I`), idade aproximada (`Filhote`, `Adulto`, `Idoso`), medicação (`Sim`, `Não`, `Não sei`), vacinação (`Sim`, `Não`, `Não sei`).
+  - **Etapa 1 — Sobre o Pet:**
+    - `tipo_servico`: Obrigatório, finalidade do anúncio (`ADOCAO` ou `PERDIDO`).
+    - `nome`: Obrigatório, nome do animal (texto).
+    - `tipo_animal`: Obrigatório, categoria do pet (`CACHORRO`, `GATO`, `OUTRO`).
+    - `sexo`: Obrigatório (`M` para Macho, `F` para Fêmea, `I` para Indeterminado).
+    - `raca`: Opcional, raça do pet (texto).
+    - `idade_aproximada`: Opcional (`Filhote`, `Adulto`, `Idoso`).
+    - `descricao`: Obrigatório, temperamento e características (máx. 255 caracteres).
+  - **Etapa 2 — Local & Contato:**
+    - `estado`: Obrigatório, Estado / UF (select com lista oficial do IBGE).
+    - `cidade`: Obrigatório, Cidade (com autocompletar baseado na UF).
+    - `telefone_contato`: Obrigatório, telefone/WhatsApp de contato (vinculado e carregado automaticamente do perfil do tutor autenticado).
+  - **Etapa 3 — Saúde & Foto:**
+    - `castrado`: Opcional (`Sim`, `Não`, `Não sei`).
+    - `medicamento`: Opcional, uso contínuo de medicamentos (`Sim`, `Não`, `Não sei`).
+    - `imagem`: Obrigatório, foto principal do pet (anexo em formato JPEG, PNG ou WebP de até 15 MB, validada por IA e otimizada automaticamente).
 
-### `RF08` — Vínculo de Propriedade e Contato Flexível
-* **Descrição:** Todo animal cadastrado é associado automaticamente à chave estrangeira `tutor_id` do anunciante logado. A definição do telefone de contato do anúncio segue a regra:
-  - **Número já cadastrado no perfil:** O anúncio herda diretamente o telefone do tutor (`tutor.telefone`), sem necessidade de redigitação.
-  - **Número não cadastrado (ou contato específico):** O formulário disponibiliza o campo para o usuário digitar o telefone de contato (`telefone_contato`), assegurando que todo anúncio possua um meio de comunicação válido para o botão de WhatsApp.
+### `RF08` — Vínculo Automático de Propriedade e Contato do Tutor
+* **Descrição:** Todo animal cadastrado é associado automaticamente à chave estrangeira `tutor_id` do anunciante logado e herda diretamente os dados e o telefone de contato da conta do tutor (`tutor.telefone`), sem inserção manual de informações de contato durante o cadastro do animal.
 
 ### `RF09` — Cota de 5 Animais Ativos
 * **Descrição:** Cada usuário pode manter ativo simultaneamente no máximo **5 registros de animais** (soma de adoção `Disponível` + perdidos `Perdido`). A tentativa de cadastrar o 6º registro ativo é bloqueada pelo backend com mensagem explicativa.
@@ -70,22 +80,22 @@ Este documento cataloga os Requisitos Funcionais do sistema **Best Buddy**, orga
 * **Descrição:** O tutor tem permissão exclusiva para editar as informações do seu anúncio ou alterar o status para `Adotado`, encerrando a exibição pública.
 
 ### `RF11` — Contato Direto via WhatsApp
-* **Descrição:** Interessados entram em contato diretamente com o tutor através do botão de WhatsApp, abrindo conversa direta (`https://wa.me/55...`) utilizando o telefone associado ao anúncio (herdado do tutor ou digitado no cadastro).
+* **Descrição:** Interessados entram em contato diretamente com o tutor através do botão de WhatsApp, abrindo conversa direta (`https://wa.me/55...`) utilizando o telefone vinculado automaticamente à conta do tutor anunciante.
 
 ---
 
 ## 🔍 Módulo 3: Animais Perdidos (Desaparecidos)
 
 ### `RF12` — Mural de Animais Perdidos
-* **Descrição:** Mural público exibindo animais com `tipo_servico='PERDIDO'` e status `Perdido`, com foto, nome (se houver), cidade, estado, último local visto/ponto de referência e botão de contato com o tutor via WhatsApp.
+* **Descrição:** Mural público exibindo animais com `tipo_servico='PERDIDO'` e status `Perdido`, com foto, nome, cidade, estado, último local visto/ponto de referência e botão de contato com o tutor via WhatsApp.
 
 ### `RF13` — Filtros em Animais Perdidos
 * **Descrição:** Filtros de pesquisa por Estado/Cidade, tempo de postagem e tipo de animal no mural de desaparecidos.
 
 ### `RF14` — Formulário de Registro de Animal Perdido
 * **Descrição:** Formulário estruturado para usuário autenticado registrar um pet perdido (`tipo_servico='PERDIDO'`):
-  - **Campos Obrigatórios:** Foto do animal, tipo de animal, cidade, estado, último local visto (ponto de referência), informações extras/descrição (máx. 255 caracteres) e telefone de contato (herdado do perfil do tutor ou aberto para digitação caso o usuário não tenha telefone cadastrado).
-  - **Campos Opcionais:** Nome do animal.
+  - **Campos Obrigatórios:** Nome do animal, foto do animal, tipo de animal, cidade, estado, último local visto (ponto de referência) e informações extras/descrição (máx. 255 caracteres). O telefone de contato é herdado automaticamente do perfil do tutor autenticado (sem digitação manual).
+  - **Campos Opcionais:** Raça, sexo (`M`, `F`, `I`), idade aproximada (`Filhote`, `Adulto`, `Idoso`), medicação (`Sim`, `Não`, `Não sei`) e castrado (`Sim`, `Não`, `Não sei`).
 
 ### `RF15` — Resolução pelo Tutor (Encontrado)
 * **Descrição:** O tutor pode marcar o anúncio como "Encontrado" a qualquer momento, removendo o animal da listagem de desaparecidos.

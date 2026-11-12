@@ -797,7 +797,7 @@ formAdoptPet.addEventListener("submit", async (e) => {
 
   const nomeVal = document.getElementById("pet-nome")?.value.trim() || "";
   const tipoVal = document.getElementById("pet-tipo")?.value || "CACHORRO";
-  const sexoVal = document.getElementById("pet-sexo")?.value || "M";
+  const sexoVal = document.getElementById("pet-sexo")?.value || "";
   const racaVal = document.getElementById("pet-raca")?.value.trim() || "";
   const idadeVal = document.getElementById("pet-idade")?.value.trim() || "";
   const descVal = document.getElementById("pet-descricao")?.value.trim() || "";
@@ -809,6 +809,13 @@ formAdoptPet.addEventListener("submit", async (e) => {
     modalAlertEl.innerHTML = `<div class="bb-alert bb-alert--error">Por favor, informe o nome do pet.</div>`;
     goToAdoptTab(0);
     document.getElementById("pet-nome")?.focus();
+    return;
+  }
+
+  if (!sexoVal) {
+    modalAlertEl.innerHTML = `<div class="bb-alert bb-alert--error">Por favor, selecione o sexo do pet.</div>`;
+    goToAdoptTab(0);
+    document.getElementById("pet-sexo")?.focus();
     return;
   }
 

@@ -5,11 +5,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Best Buddy | Editar Perfil</title>
+  <meta name="description"
+    content="Gerencie suas informações pessoais, foto de perfil e credenciais de acesso no Best Buddy." />
   <link rel="icon" type="image/svg+xml" href="../../favicon.svg" />
   <link rel="alternate icon" type="image/x-icon" href="../../favicon.ico" />
   <link rel="apple-touch-icon" href="../../apple-touch-icon.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="stylesheet" href="../../css/tailwind.build.css?v=6" />
+  <link rel="stylesheet" href="../../css/fonts.css" />
+  <link rel="stylesheet" href="../../css/tailwind.build.css?v=8" />
 </head>
 
 <body>
@@ -59,7 +61,7 @@
 
                 <div class="flex-1 text-center sm:text-left">
                   <h3 class="text-sm font-bold text-ink-100 mb-1">Foto de Perfil</h3>
-                  <p class="text-xs text-ink-300 mb-3">Formatos aceitos: JPG, PNG, GIF ou WebP (máx. 2MB).</p>
+                  <p class="text-xs text-ink-300 mb-3">Formatos aceitos: JPG, PNG ou WebP (máx. 2MB).</p>
                   <div class="flex flex-wrap justify-center sm:justify-start gap-2">
                     <label for="input-profile-avatar"
                       class="bb-btn bb-btn--secondary text-xs py-1.5 px-3 cursor-pointer">
@@ -77,10 +79,6 @@
               <div class="bb-field">
                 <div class="flex items-center justify-between mb-1.5">
                   <label class="bb-label mb-0" for="edit-profile-name">Nome Completo</label>
-                  <span
-                    class="text-[11px] text-ink-400 font-medium bg-surface-600/70 border border-border px-2 py-0.5 rounded-md flex items-center gap-1">
-                    🔒 Não pode ser alterado
-                  </span>
                 </div>
                 <input class="bb-input opacity-75 cursor-not-allowed bg-surface-800 text-ink-200" type="text"
                   id="edit-profile-name" name="edit-profile-name" placeholder="Seu nome completo" readonly disabled />
@@ -242,20 +240,20 @@
     <div id="bb-footer"></div>
   </div>
 
-  <script src="../../js/config.js"></script>
-  <script src="../../js/utils/storage.js"></script>
-  <script src="../../js/utils/auth-guard.js"></script>
-  <script src="../../js/utils/validation.js"></script>
-  <script src="../../js/mocks/mock-utils.js"></script>
-  <script src="../../js/mocks/mock-data.js"></script>
-  <script src="../../js/api/client.js"></script>
-  <script src="../../js/services/authService.js"></script>
-  <script src="../../js/utils/header-scroll.js"></script>
-  <script src="../../js/components/Navigation.js"></script>
-  <script src="../../js/components/Footer.js"></script>
-  <script src="../../js/components/CookieBanner.js?v=6"></script>
-  <script src="../../js/utils/click-limiter.js"></script>
-  <script src="../../js/pages/profile.js?v=6"></script>
+  <script src="../../js/config.js" defer></script>
+  <script src="../../js/utils/storage.js" defer></script>
+  <script src="../../js/utils/auth-guard.js" defer></script>
+  <script src="../../js/utils/validation.js" defer></script>
+  <script src="../../js/mocks/mock-utils.js" defer></script>
+  <script src="../../js/mocks/mock-data.js" defer></script>
+  <script src="../../js/api/client.js" defer></script>
+  <script src="../../js/services/authService.js" defer></script>
+  <script src="../../js/utils/header-scroll.js" defer></script>
+  <script src="../../js/components/Navigation.js?v=bb4" defer></script>
+  <script src="../../js/components/Footer.js" defer></script>
+  <script src="../../js/components/CookieBanner.js?v=6" defer></script>
+  <script src="../../js/utils/click-limiter.js" defer></script>
+  <script src="../../js/pages/profile.js?v=6" defer></script>
 </body>
 
 </html>
