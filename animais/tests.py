@@ -163,6 +163,24 @@ class AnimaisSerializerValidationTests(TestCase):
         self.assertIn("imagem", serializer.errors)
         self.assertIn("A foto do animal é obrigatória para publicar o anúncio.", str(serializer.errors["imagem"]))
 
+    def test_serializer_exige_local_quando_perdido(self):
+        """Ao registrar um animal perdido, o último local visto deve ser informado."""
+        serializer = AnimaisSerializer(data={
+            "nome": "Bolt",
+            "tipo_servico": "PERDIDO",
+            "tipo_animal": "CACHORRO",
+            "estado": "SP",
+            "cidade": "São Paulo",
+            "telefone_contato": "11988887777"
+        })
+
+        self.assertFalse(serializer.is_valid())
+        self.assertIn("local", serializer.errors)
+        self.assertIn(
+            "Informe o último local onde o animal foi visto",
+            str(serializer.errors["local"])
+        )
+
     def test_serializer_permite_edicao_sem_reenviar_foto(self):
         """Ao editar um animal que já possui foto, não é necessário enviar o arquivo novamente."""
         animal = Animal.objects.create(
