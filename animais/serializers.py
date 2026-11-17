@@ -93,6 +93,16 @@ class AnimaisSerializer(serializers.ModelSerializer):
                 "telefone_contato": "É necessário um número de contato para cadastrar o animal."
             })
 
+        tipo_servico = attrs.get('tipo_servico') or (
+            self.instance.tipo_servico if self.instance else Animal.TipoServico.ADOCAO
+        )
+        if tipo_servico == Animal.TipoServico.PERDIDO:
+            local = (attrs.get('local') or (self.instance.local if self.instance else '') or '').strip()
+            if not local:
+                raise serializers.ValidationError({
+                    "local": "Informe o último local onde o animal foi visto ou um ponto de referência."
+                })
+
         # Validação de foto obrigatória e validação inteligente de imagem com IA
         imagem = attrs.get('imagem')
         is_create = not self.instance
